@@ -9,7 +9,7 @@ Gostaríamos de implementar uma interface de usuário limpa e que evidencie prin
 
 
 ## Equipe
-* César de Paula Morais              2021031521
+* César de Paula Morais               2021031521
 * Matheus Grandinetti Barbosa        //matrícula//
 * Pedro Henrique Fernandes Baptista  2021031610
 
