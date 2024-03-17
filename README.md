@@ -3,8 +3,8 @@
 ## Escopo do Projeto
 
 ## Equipe
-> César de Paula Morais              //matrícula//
-> Matheus Grandinetti Barbosa        //matrícula//
-> Pedro Henrique Fernandes Baptista  2021031610
+* César de Paula Morais              //matrícula//
+* Matheus Grandinetti Barbosa        //matrícula//
+* Pedro Henrique Fernandes Baptista  2021031610
 
-## Tecnologias
+## Tecnologias Utilizadas
