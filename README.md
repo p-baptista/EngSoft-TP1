@@ -14,7 +14,7 @@ Gostaríamos também de implementar uma interface de usuário limpa e que eviden
 
 ## Equipe
 * César de Paula Morais (2021031521): Frontend
-* Matheus Grandinetti Barbosa (//matrícula//): Backend
+* Matheus Grandinetti Barbosa (2021067496): Backend
 * Pedro Henrique Fernandes Baptista (2021031610): Fullstack
 
 ## Tecnologias Utilizadas
