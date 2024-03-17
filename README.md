@@ -13,9 +13,9 @@ Gostaríamos também de implementar uma interface de usuário limpa e que eviden
 
 
 ## Equipe
-* César de Paula Morais              2021031521
-* Matheus Grandinetti Barbosa        //matrícula//
-* Pedro Henrique Fernandes Baptista  2021031610
+* César de Paula Morais (2021031521): Frontend
+* Matheus Grandinetti Barbosa (//matrícula//): Backend
+* Pedro Henrique Fernandes Baptista (2021031610): Fullstack
 
 ## Tecnologias Utilizadas
 Utilizaremos o framework Django, na linguagem Python, para o backend, e HTML/CSS/JavaScript para o frontend. O banco de dados do framework, por default, é SQLite.
