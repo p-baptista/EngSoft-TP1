@@ -24,34 +24,32 @@ Também utilizaremos o GitHub, tecnologia obrigatória do trabalho, para reposit
 ## Histórias
 ### História #1: Login e Esqueci minha senha
 **Tarefas e Responsáveis:**
-* [Back]: Criar lógica de login e logout
-* [Back]: Criar lógica e middlewares de token JWT, autenticação de role, etc.
-* [Back]: Criar lógica de recuperação de senha através de código enviado por email
-* [Front]: Página estática de login
-* [Front]: Conexão da página de login com o back
-* [Front]: Página estática de esqueci minha senha
-* [Front]: Conexão da página de esqueci minha senha com o back
+* [Back]: Criar lógica de login e logout - Matheus
+* [Back]: Criar lógica e middlewares de token JWT, autenticação de role, etc. - Pedro
+* [Back]: Criar lógica de recuperação de senha através de código enviado por email - Pedro
+* [Front]: Página estática de login - César
+* [Front]: Conexão da página de login com o back - César
+* [Front]: Página estática de esqueci minha senha - César
+* [Front]: Conexão da página de esqueci minha senha com o back - César
 
 ### História #2: Perfil e biblioteca de jogos
 **Tarefas e Responsáveis:**
-* [Back]: Criar rotas para listagem de jogos por usuário
-* [Front]: Página estática do perfil
-* [Front]: Conexão do perfil com o back
-* [Front]: Página estática da Home Page (com listagem dos jogos)
-* [Front]: Conexão da Home Page com o back
-* [Front]: Página de jogo (com ou sem review)
-* [Front]: Conexão do perfil de jogo com o back
+* [Back]: Criar rotas para listagem de jogos por usuário - Matheus
+* [Front]: Página estática da Home Page (com listagem dos jogos) - César
+* [Front]: Conexão da Home Page com o back - Pedro
+* [Front]: Página de jogo (com ou sem review) - César
+* [Front]: Conexão do perfil de jogo com o back - Pedro
 
 ### História #3: Visualizar outros perfis
 **Tarefas e Responsáveis:**
-* [Back]: Criar rotas retornando outros usuários
-* [Front] Criar botão de procura na Home Page
-* [Front] Criar lógica de pesquisa de usuários
-* [Front] Criar página de perfil de outros usuários
+* [Back]: Criar rotas retornando outros usuários - Matheus
+* [Front] Criar botão de procura na Home Page - César
+* [Front] Criar lógica de pesquisa de usuários - Pedro
+* [Front] Criar página de perfil de outros usuários - César
 
 ### História #4: Adicionar review
 **Tarefas e Responsáveis:**
-* [Back]: Criar rota para seleção ou adição de jogos para review
-* [Back]: Adicionar review do jogo no banco de dados
-* [Front] Criar página para adição de review
-* [Front] Criar página para edição de review
+* [Back]: Criar rota para seleção ou adição de jogos para review - Matheus
+* [Back]: Adicionar review do jogo no banco de dados - Pedro
+* [Front] Criar página para adição de review - César
+* [Front] Criar página para edição de review - César
