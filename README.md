@@ -24,13 +24,13 @@ Também utilizaremos o GitHub, tecnologia obrigatória do trabalho, para reposit
 ## Histórias
 ### História #1: Login e Esqueci minha senha
 **Tarefas e Responsáveis:**
-* [Back]: Criar rotas para listagem de jogos por usuário
-* [Front]: Página estática do perfil
-* [Front]: Conexão do perfil com o back
-* [Front]: Página estática da Home Page (com listagem dos jogos)
-* [Front]: Conexão da Home Page com o back
-* [Front]: Página de jogo (com ou sem review)
-* [Front]: Conexão do perfil de jogo com o back
+* [Back]: Criar lógica de login e logout
+* [Back]: Criar lógica e middlewares de token JWT, autenticação de role, etc.
+* [Back]: Criar lógica de recuperação de senha através de código enviado por email
+* [Front]: Página estática de login
+* [Front]: Conexão da página de login com o back
+* [Front]: Página estática de esqueci minha senha
+* [Front]: Conexão da página de esqueci minha senha com o back
 
 ### História #2: Perfil e biblioteca de jogos
 **Tarefas e Responsáveis:**
