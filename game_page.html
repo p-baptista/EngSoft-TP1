@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+
+    <!-- Change stylesheet import for django-->
+    <link rel="stylesheet" href="static/css/game_page_style.css">
+
+    <title>
+        GAME NAME / RankD
+    </title>
+
+</head>
+
+
+<body>
+    <!--Adding header-->
+    <script>
+        fetch('header.html')
+            .then(response => response.text())
+            .then(html => {
+                document.body.insertAdjacentHTML('afterbegin', html);
+            })
+            .then(() => {
+                // Now that the HTML content is inserted, load the JavaScript file
+                const script = document.createElement('script');
+                script.src = 'static/js/header_functions.js';
+                document.body.appendChild(script);
+            });
+    </script>
+
+    <!-- Cover and user rating -->
+    <!-- Change star's rating for backend info! -->
+    <div class="cover_border">
+        <h3 class="user_ratings">User Ratings</h3>
+        <div class="star_rating" rating="7" id="game_rating_star"></div>
+    </div>
+
+    <!-- User review -->
+    <div class="user_review">
+        <h3 class="your_review">Your Review</h3>
+        <h3 class="game_name">Game Name Here</h3>
+        <div class="star_rating" rating="9" star_size="medium" id="user_rating_star"></div>
+    </div>
+
+    <script src="static/js/stars.js"></script>
+    
+</body>
+
+</html>

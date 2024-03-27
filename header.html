@@ -1,0 +1,32 @@
+<!-- header.html -->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Change stylesheet import for django-->
+    <link rel="stylesheet" href="static/css/header_style.css">
+    <link href='https://fonts.googleapis.com/css?family=Fredoka' rel='stylesheet'>
+</head>
+
+<body>
+
+    <header>
+        <img onclick="main_menu()" src="static/pics/RankD.png" class="logo">
+        
+        <h2>Welcome, username!</h2>
+
+        <div id="border" class="circle"></div>
+        <!--Add user picture here - make sure there is a nice white border-->
+
+        <div id="popup" class="popup">
+            <button onclick="log_out()" class="log_out_button">Log out</button>
+        </div>
+
+        <script src="static/js/header_functions.js"></script>
+    </header>
+
+</body>
+</html>

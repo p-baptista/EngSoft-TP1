@@ -1,0 +1,94 @@
+body {
+    background-color: white;
+    font-family: 'Fredoka', sans-serif;
+
+    color: black;
+}
+
+/* Star logic -> maybe there's a way to separate it? */
+.star {
+    display: inline-block;
+    width: 48px;
+    height: 42px;
+    background-size: contain;
+}
+
+.full {
+    background-image: url('../pics/blue_star.png');
+}
+
+.half {
+    background-image: url('../pics/half_blue_star.png');
+}
+
+.empty {
+    background-image: url('../pics/empty_star.png');
+}
+
+.medium {
+    width: 37px;
+    height: 32px;
+}
+
+/* Left block */
+.cover_border {
+    height: 460px;
+    width: 299px;
+    margin-right: 40px;
+    margin-left: 40px;
+
+    background-color: black;
+    border-radius: 10px;
+
+    position: absolute;
+    top: 120px;
+
+}
+
+.user_ratings {
+    color: #4952b3;
+    
+    font-size: 30px;
+    position: absolute;
+    top: 500px;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    white-space: nowrap;
+}
+
+#game_rating_star {
+    position: relative;
+    top: 520px;
+    left: 10%;
+}
+
+
+/* User's review */
+.user_review {
+    height: 630px;
+    width: calc(100% - 339px - 40px);
+    margin-left: 40px;
+
+    position:absolute;
+    left: 339px;
+}
+
+.your_review {
+    font-size: 25px;
+
+    position: absolute;
+    top: 40px;
+}
+
+.game_name {
+    font-size: 80px;
+
+    position: relative;
+    top: 60px;
+}
+
+#user_rating_star {
+    position: absolute;
+    top: 30px;
+    right: 20px;
+}
