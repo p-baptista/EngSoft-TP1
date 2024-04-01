@@ -90,7 +90,7 @@ body {
 #user_rating_star {
     position: absolute;
     top: 30px;
-    right: 20px;
+    right: 3%;
 }
 
 .user_review {
