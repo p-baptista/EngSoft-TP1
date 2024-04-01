@@ -31,7 +31,8 @@ class Review(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     game = models.ForeignKey(Game, on_delete=models.CASCADE)
     platform = models.ForeignKey(Platform, on_delete=models.CASCADE)
-    comment = models.CharField(max_length=1000)
+    comment = models.CharField(max_length=1000, blank=True, null=True)
+    date = models.DateTimeField()
     rating =models.IntegerField(
         validators=[
             MaxValueValidator(10),
