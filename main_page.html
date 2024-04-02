@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+
+    <!-- Change stylesheet import for django-->
+    <link rel="stylesheet" href="static/css/main_page_style.css">
+
+    <title>
+        Main Page / RankD
+    </title>
+
+</head>
+
+
+<body>
+    <!--Adding header-->
+    <script>
+        fetch('header.html')
+            .then(response => response.text())
+            .then(html => {
+                document.body.insertAdjacentHTML('afterbegin', html);
+            })
+            .then(() => {
+                // Now that the HTML content is inserted, load the JavaScript file
+                const script = document.createElement('script');
+                script.src = 'static/js/functions.js';
+                document.body.appendChild(script);
+            });
+    </script>
+
+    <!--Adding logic-->
+    <h3>Find new games/your friends!</h3>
+
+    <input type="text" id="search_bar" name="searched">
+    
+    <h3>My games</h3>
+</body>
+
+</html>
