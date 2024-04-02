@@ -4,13 +4,13 @@ from main_app.models import *
 
 # Create your views here.
 class LoginView(ListView):
-    template_name = "login.html"
+    template_name = "login_page.html"
     model = User
     
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         return context
-    
+        
 class HomeView(ListView):
     template_name="home.html"
     model = User
@@ -28,11 +28,15 @@ class SearchGameView(ListView):
         return context
     
 class GameReviewView(ListView):
-    template_name="review_game.html"
+    template_name="game_review.html"
     model = Review 
     
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
+        
+        context['user_review'] = Review.objects.filter(user__username='cesar', game__name='zelda').last()
+        context['other_reviews'] = Review.objects.filter(game__name='zelda')
+        
         return context
     
 class AddGameReviewView(CreateView):

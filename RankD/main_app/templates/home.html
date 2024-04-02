@@ -1,1 +1,27 @@
-<p>Home page</p>
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/main_page_style.css' %}"/>
+
+    <title>
+        Home / RankD
+    </title>
+</head>
+
+
+<body>
+    {% include 'header.html' %}
+
+    <!--Adding logic-->
+    <h3>Find new games!</h3>
+
+    <input type="text" id="search_bar" name="searched">
+    
+    <h3>My games</h3>
+</body>
+
+</html>
