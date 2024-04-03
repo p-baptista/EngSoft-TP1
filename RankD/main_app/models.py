@@ -5,7 +5,7 @@ class User(models.Model):
     name = models.CharField(max_length=255)
     username = models.CharField(max_length=255)
     password = models.CharField(max_length=255)
-    icon_url = models.URLField(blank=True, null=True)
+    icon_path = models.CharField(max_length=255, blank=True)
     
     def __str__(self):
         return f'{self.username}'
@@ -14,7 +14,7 @@ class Game(models.Model):
     name = models.CharField(max_length=255)
     studio = models.CharField(max_length=255)
     release_date = models.DateField()
-    cover_url = models.URLField(blank=True, null=True)
+    cover_path = models.CharField(max_length=255, blank=True)
     mean_rating = models.IntegerField(blank=True, null=True)
     
     def __str__(self):

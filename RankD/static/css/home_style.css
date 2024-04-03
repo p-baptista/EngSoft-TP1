@@ -1,0 +1,64 @@
+body {
+    background-color: white;
+    font-family: 'Fredoka', sans-serif;
+
+    color: black;
+}
+
+/* Search bar title and my games title */
+h3 {
+    text-align: center;
+    font-size: 50px;
+}
+
+#search_bar {
+    width: 40%;
+    height: 40px;
+    margin-bottom: 40px;
+
+    position:relative;
+    top: 25px;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    
+    border-radius: 10px;
+    font-size: 35px;
+    font-family: 'Fredoka';
+    text-align: center;
+
+    background-color: #676ec2;
+}
+
+.game_grid {
+    background-color: red;
+    margin-top: 1%;
+    margin-bottom: 4%;
+    margin-left: 5%;
+    margin-right: 5%;
+
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+}
+
+/* Inside game portion of the grid */
+.game_item {
+    height: 300px;
+}
+
+.game_cover {
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+
+    border: 3px solid black;
+}
+
+
+.no_games {
+    position: relative;
+    top: 150px;
+
+    font-size: 40px;
+    text-align: center;
+}

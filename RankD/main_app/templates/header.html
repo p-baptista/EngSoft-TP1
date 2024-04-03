@@ -19,12 +19,17 @@
         {% load static %}
         <img onclick="main_menu()" src="{% static 'pics/RankD.png' %}" class="logo">
         
-        <h2>Welcome, username!</h2>
+        <h2 class="welcome_username"> Welcome, {{ user.username }}! </h2>
+    
+        <button id="my_friends"> My Friends </button>
+        <div id="friends_popup" class="popup">
+        </div>
+
 
         <div id="border" class="circle"></div>
         <!--Add user picture here - make sure there is a nice white border-->
 
-        <div id="popup" class="popup">
+        <div id="profile_popup" class="popup">
             <button onclick="log_out()" class="log_out_button">Log out</button>
         </div>
 

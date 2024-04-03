@@ -28,3 +28,24 @@ h3 {
 
     background-color: #676ec2;
 }
+
+.game_grid {
+    background-color: red;
+    margin-bottom: 4%;
+    margin-left: 5%;
+    margin-right: 5%;
+
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+}
+
+/* Inside game portion of the grid */
+.game_item {
+    height: 300px;
+}
+
+.game_cover {
+    width: 70%;
+    height: 87%;
+}

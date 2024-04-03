@@ -21,14 +21,16 @@ class HomeView(ListView):
         context = super().get_context_data(**kwargs)
         
         user = User.objects.filter(username=self.request.resolver_match.kwargs['username']).last()
-        context['user'] = user
         
-        context['user_games'] = [review.game for review in Review.objects.filter(user_id=user.id)]
-         
-        context['user_friends'] = [friendship.user2 for friendship in FriendList.objects.filter(user1_id=user.id)]
-        
-        context['user_reviews'] = Review.objects.filter(user_id=user.id)
-        
+        if user:
+            context['user'] = user
+
+            context['user_games'] = [review.game for review in Review.objects.filter(user__username = user.username)]
+            
+            context['user_friends'] = [friendship.user2 for friendship in FriendList.objects.filter(user1__username = user.username)]
+            
+            context['user_reviews'] = Review.objects.filter(user_id=user.id)
+
         return context
 
     

@@ -5,10 +5,10 @@
     <meta charset="UTF-8">
 
     {% load static %}
-    <link rel="stylesheet" type="text/css" href="{% static 'css/main_page_style.css' %}"/>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/home_style.css' %}"/>
 
     <title>
-        Home / RankD
+        {{ user.username }}'s Home / RankD
     </title>
 </head>
 
@@ -22,6 +22,23 @@
     <input type="text" id="search_bar" name="searched">
     
     <h3>My games</h3>
+
+    
+    {% if user_games %}
+        <div class="game_grid">
+            {% for game in user_games %}
+                <div class="game_item">
+                    {% load static %}
+                    <img onclick="go_to_game_review()" src="{% static game.cover_path %}" class="game_cover">
+                    {{ game.name }}
+                </div>
+            {% endfor %}
+        </div>
+    {% else %}
+        <div class="no_games"> You don't have games in your library yet! </div>
+    {% endif %}
+
+
 </body>
 
 </html>
