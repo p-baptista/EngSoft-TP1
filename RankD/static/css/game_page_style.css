@@ -57,7 +57,7 @@ body {
 }
 
 #game_rating_star {
-    position: relative;
+    position: absolute;
     top: 520px;
     left: 10%;
 }
@@ -103,13 +103,46 @@ body {
     padding: 10px;
 
     position: absolute;
-    top: 150px;
+    top: 150px; 
+    overflow: auto; 
+}
+
+.user_review span {
+    overflow-wrap: break-word;
+    word-wrap: break-word;
 }
 
 .edit_review_button {
     position: absolute;
     top: 550px;
     right: 35px;
+
+    width: 180px;
+    height: 50px;
+    
+    font-size: 20px;
+    font-family: 'Fredoka';
+
+    border-radius: 10px;
+
+    background-color: white;
+    color: #4952b3;
+    cursor: pointer;
+}
+
+.no_review {
+    font-size: 45px;
+    position: relative;
+    top: 30%;
+    text-align: center;
+}
+
+.add_review_button {
+    position: absolute;
+    top: 250px;
+    left: 50%;
+    transform: translateX(-50%);
+    
 
     width: 180px;
     height: 50px;
@@ -152,10 +185,23 @@ body {
     top: 20%;
     left: 50%;
     transform: translateX(-50%);
+    overflow: auto; 
+}
+
+.user_review span {
+    overflow-wrap: break-word;
+    word-wrap: break-word;
 }
 
 #friend_rating_star {
     position: absolute;
     top: 3px;
     right: 2%;;
+}
+
+.no_friend_review {
+    font-size: 35px;
+    position: relative;
+    top: 30%;
+    text-align: center;
 }
