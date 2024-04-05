@@ -32,17 +32,28 @@ body {
 
 /* Left block */
 .cover_border {
-    height: 475px;
+    height: 78%;
     width: 310px;
     margin-right: 40px;
     margin-left: 40px;
 
-    background-color: black;
     border-radius: 10px;
 
     position: absolute;
     top: 120px;
 
+}
+
+.game_cover {
+    height: 80%;
+    width: auto;
+
+    position: relative;
+    top: 2%;
+    left: 50%;
+    transform: translateX(-50%);
+
+    border: 4px solid black;
 }
 
 .user_ratings {

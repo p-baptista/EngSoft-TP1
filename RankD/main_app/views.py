@@ -45,7 +45,7 @@ class GameReviewView(ListView):
         user = User.objects.filter(username=self.request.resolver_match.kwargs['username']).last()
         context['user'] = user
         
-        context['game'] = Game.objects.filter(name=game_name)
+        context['game'] = Game.objects.filter(name=game_name).last()
         
         context['user_review'] = Review.objects.filter(game__name=game_name, user_id=user.id).last()
         
@@ -53,7 +53,7 @@ class GameReviewView(ListView):
         context['user_friends'] = User.objects.filter(id__in=user_friends_id)
         
         context['friends_review'] = Review.objects.filter(game__name=game_name, user_id__in=user_friends_id)
-        
+
         return context
     
     

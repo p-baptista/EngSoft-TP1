@@ -20,6 +20,8 @@
     <!-- Cover and user rating -->
     <!-- Change star's rating for backend info! -->
     <div class="cover_border">
+        {% load static %}
+        <img onclick="go_to_game_review()" src="{% static game.cover_path %}" class="game_cover">
         <h3 class="user_ratings"> User Ratings </h3>
         <div class="star_rating" rating= {{ user_review.game.mean_rating }} id="game_rating_star"></div>
     </div>
