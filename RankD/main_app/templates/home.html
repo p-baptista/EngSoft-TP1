@@ -24,13 +24,16 @@
     <h3>My games</h3>
 
     
-    {% if user_games %}
+    {% if user_reviews %}
         <div class="game_grid">
-            {% for game in user_games %}
+            {% for game_review in user_reviews %}
                 <div class="game_item">
                     {% load static %}
-                    <img onclick="go_to_game_review()" src="{% static game.cover_path %}" class="game_cover">
-                    {{ game.name }}
+                    <img src="{% static game_review.game.cover_path %}" class="game_cover">
+
+                    <h4 class="game_platform"> {{ game_review.platform.slang }} </h4>
+
+                    <div class="star_rating" rating={{ game_review.rating }} star_size="small" id="game_rating_star"></div>
                 </div>
             {% endfor %}
         </div>
@@ -39,6 +42,8 @@
     {% endif %}
 
 
+    {% load static %}
+    <script src="{% static 'js/stars.js' %}"></script>
 </body>
 
 </html>
