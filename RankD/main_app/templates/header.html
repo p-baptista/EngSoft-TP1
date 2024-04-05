@@ -17,7 +17,9 @@
 
     <header>
         {% load static %}
-        <img onclick="main_menu()" src="{% static 'pics/RankD.png' %}" class="logo">
+        <a href="/{{ user.username }}">
+            <img src="{% static 'pics/RankD.png' %}" class="logo">
+        </a>
         
         <h2 class="welcome_username"> Welcome, {{ user.username }}! </h2>
     

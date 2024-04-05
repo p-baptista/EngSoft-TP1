@@ -29,8 +29,10 @@
             {% for game_review in user_reviews %}
                 <div class="game_item">
                     {% load static %}
-                    <img src="{% static game_review.game.cover_path %}" class="game_cover">
-
+                    <a href="/{{ user.username }}/review-page/{{ game_review.game.name }}">
+                        <img src="{% static game_review.game.cover_path %}" class="game_cover">
+                    </a>
+                    
                     <h4 class="game_platform"> {{ game_review.platform.slang }} </h4>
 
                     <div class="star_rating" rating={{ game_review.rating }} star_size="small" id="game_rating_star"></div>
