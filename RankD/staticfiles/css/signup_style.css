@@ -1,0 +1,53 @@
+body {
+    background-color: #4952b3;
+    font-family: 'Fredoka', sans-serif;
+
+    justify-content: center;
+
+    color: white;
+    text-align: center;
+    font-size: 40px;
+}
+
+input[type="text"], input[type="email"], input[type="password"] {
+    width: 40%;
+    height: 15%;
+
+    position: relative;
+
+    
+    margin: 1%;
+
+    font-size: 30px;
+    font-family: 'Fredoka';
+    text-align: center;
+    text-size-adjust: 20%;
+}
+
+button {
+    justify-content: center;
+    align-items: center;
+}
+
+.logo {
+    max-width: 35%;
+    height: auto; 
+
+    position: relative;
+    top: 30px;
+}
+
+.button_model {
+    width: 150px;
+    height: 50px;
+    
+    font-size: 38px;
+    font-family: 'Fredoka';
+
+    border-radius: 10px;
+    margin: 2%;
+
+    background-color: white;
+    color: #4952b3;
+    cursor: pointer;
+}

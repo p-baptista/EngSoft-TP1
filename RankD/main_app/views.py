@@ -12,6 +12,14 @@ class LoginView(ListView):
         context = super().get_context_data(**kwargs)
         return context
     
+class SignupView(ListView):
+    template_name = "signup.html"
+    model = User
+    
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        return context
+    
         
 class HomeView(ListView):
     template_name="home.html"
