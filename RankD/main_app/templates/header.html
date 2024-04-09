@@ -1,0 +1,43 @@
+<!-- header.html -->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/header_style.css' %}"/>
+    
+    <link href='https://fonts.googleapis.com/css?family=Fredoka' rel='stylesheet'>
+
+</head>
+
+<body>
+
+    <header>
+        {% load static %}
+        <a href="/{{ user.username }}">
+            <img src="{% static 'pics/RankD.png' %}" class="logo">
+        </a>
+        
+        <h2 class="welcome_username"> Welcome, {{ user.username }}! </h2>
+    
+        <button id="my_friends"> My Friends </button>
+        <div id="friends_popup" class="popup">
+        </div>
+
+
+        <div id="border" class="circle"></div>
+        <!--Add user picture here - make sure there is a nice white border-->
+
+        <div id="profile_popup" class="popup">
+            <button onclick="log_out()" class="log_out_button">Log out</button>
+        </div>
+
+        {% load static %}
+        <script src="{% static 'js/header_functions.js' %}"></script>
+    </header>
+
+</body>
+</html>

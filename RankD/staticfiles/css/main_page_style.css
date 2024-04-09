@@ -1,0 +1,30 @@
+body {
+    background-color: white;
+    font-family: 'Fredoka', sans-serif;
+
+    color: black;
+}
+
+/* Search bar title and my games title */
+h3 {
+    text-align: center;
+    font-size: 50px;
+}
+
+#search_bar {
+    width: 40%;
+    height: 40px;
+    margin-bottom: 40px;
+
+    position:relative;
+    top: 25px;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    
+    border-radius: 10px;
+    font-size: 35px;
+    font-family: 'Fredoka';
+    text-align: center;
+
+    background-color: #676ec2;
+}
