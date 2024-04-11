@@ -1,9 +1,10 @@
 from django.shortcuts import render
-from django.views.generic import ListView, CreateView
+from django.views.generic import ListView, CreateView, UpdateView
+from django.http import HttpResponseRedirect
 from main_app.models import *
 from main_app.forms import *
 
-# Create your views here.
+
 class LoginView(ListView):
     template_name = "login_page.html"
     model = User
@@ -12,14 +13,42 @@ class LoginView(ListView):
         context = super().get_context_data(**kwargs)
         return context
     
-class SignupView(ListView):
+class SignupView(CreateView):
     template_name = "signup.html"
+    fields = ['username', 'email', 'password']
     model = User
     
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
+        
+        error = self.request.GET.get('error')
+        if error:
+            context['error'] = error
+        
         return context
     
+    def post(self, request, *args, **kwargs):
+        
+        password = request.POST['password']
+        if password != request.POST['confirm_password']:
+            return HttpResponseRedirect('/signup' + '?error=As senhas informadas não coincidem')
+        
+        username = request.POST['username']
+        if User.objects.filter(username=username):
+            return HttpResponseRedirect('/signup' + '?error=O username ja está sendo utilizado')
+        
+        user_data = {
+            "username":username,
+            "password":password,
+            "email":request.POST['email'],
+            "is_authenticated":False
+        }
+        
+        new_user = User(**user_data)
+        new_user.save()
+        
+        return HttpResponseRedirect("/login")
+        
         
 class HomeView(ListView):
     template_name="home.html"

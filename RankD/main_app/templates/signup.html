@@ -18,46 +18,49 @@
             <img src="{% static 'pics/RankD.png' %}" class="logo">
         </header>
 
-        <h1>Create New Account</h1>  
+        <h1>Create New Account</h1>
+        
+        {% if error %}
+            <p style="color:red;">{{error}}</p>
+        {% endif %}
 
-        <form id="create_account_form">
-            <div>
-                <input type="text" id="username_bar" name="username" 
-                placeholder="Username" 
-                onfocus="this.placeholder = ''"
-                onblur="this.placeholder = 'Username'"
-                required>
-            </div>
-    
-            <div>
-                <input type="email" id="email_bar" name="email" 
-                placeholder="Email" 
-                onfocus="this.placeholder = ''"
-                onblur="this.placeholder = 'Email'"
-                required>
-            </div>
-    
-            <div>
-                <input type="password" id="password_bar" name="password" 
-                placeholder="Password" 
-                onfocus="this.placeholder = ''"
-                onblur="this.placeholder = 'Password'"
-                required>
-            </div>
-    
-            <div>
-                <input type="password" id="confirm_password_bar" name="confirm_password" 
-                placeholder="Confirm Password" 
-                onfocus="this.placeholder = ''"
-                onblur="this.placeholder = 'Confirm Password'"
-                required>
-            </div>
-    
-            <div>
-                <input type="submit" id="submit" name="submit_btn" class="button_model"
-                placeholder="Create Account"
-                onclick="validate_form()">
-            </div>
+        <form id="create_account_form", method="post">
+            {% csrf_token %}
+                <div>
+                    <input type="text" id="username_bar" name="username" 
+                    placeholder="Username" 
+                    onfocus="this.placeholder = ''"
+                    onblur="this.placeholder = 'Username'"
+                    required>
+                </div>
+            
+                <div>
+                    <input type="email" id="email_bar" name="email" 
+                    placeholder="Email" 
+                    onfocus="this.placeholder = ''"
+                    onblur="this.placeholder = 'Email'"
+                    required>
+                </div>
+            
+                <div>
+                    <input type="password" id="password_bar" name="password" 
+                    placeholder="Password" 
+                    onfocus="this.placeholder = ''"
+                    onblur="this.placeholder = 'Password'"
+                    required>
+                </div>
+            
+                <div>
+                    <input type="password" id="confirm_password_bar" name="confirm_password" 
+                    placeholder="Confirm Password" 
+                    onfocus="this.placeholder = ''"
+                    onblur="this.placeholder = 'Confirm Password'"
+                    required>
+                </div>
+            
+                <div>
+                    <input type="submit" value="Submit">
+                </div>
         </form>
 
         <script>
