@@ -50,6 +50,22 @@ class SignupView(CreateView):
         return HttpResponseRedirect("/login")
         
         
+class HeaderView(ListView):
+    template_name="header.html"
+    model = User
+    
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        
+        user = User.objects.filter(username=self.request.resolver_match.kwargs['username']).last()
+        
+        if user:
+            context['user'] = user
+            
+            context['user_friends'] = [friendship.user2 for friendship in FriendList.objects.filter(user1__username = user.username)]
+            
+        return context
+
 class HomeView(ListView):
     template_name="home.html"
     model = User
@@ -98,7 +114,7 @@ class AddGameReviewView(CreateView):
     template_name="add_game_review.html"
     model = Review
     fields = ['platform', 'comment', 'rating']
-    form = AddReviewForm
+    # form = AddReviewForm
     
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)

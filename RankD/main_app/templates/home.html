@@ -17,35 +17,37 @@
     {% include 'header.html' %}
 
     <!--Adding logic-->
-    <h3>Find new games!</h3>
+    <div style="margin-top: 100px;">
+        <h3>Find new games!</h3>
 
-    <input type="text" id="search_bar" name="searched">
-    
-    <h3>My games</h3>
+        <input type="text" id="search_bar" name="searched">
+        
+        <h3>My games</h3>
 
-    
-    {% if user_reviews %}
-        <div class="game_grid">
-            {% for game_review in user_reviews %}
-                <div class="game_item">
-                    {% load static %}
-                    <a href="/{{ user.username }}/review-page/{{ game_review.game.name }}">
-                        <img src="{% static game_review.game.cover_path %}" class="game_cover">
-                    </a>
-                    
-                    <h4 class="game_platform"> {{ game_review.platform.slang }} </h4>
+        
+        {% if user_reviews %}
+            <div class="game_grid">
+                {% for game_review in user_reviews %}
+                    <div class="game_item">
+                        {% load static %}
+                        <a href="/{{ user.username }}/review-page/{{ game_review.game.name }}">
+                            <img src="{% static game_review.game.cover_path %}" class="game_cover">
+                        </a>
+                        
+                        <h4 class="game_platform"> {{ game_review.platform.slang }} </h4>
 
-                    <div class="star_rating" rating={{ game_review.rating }} star_size="small" id="game_rating_star"></div>
-                </div>
-            {% endfor %}
-        </div>
-    {% else %}
-        <div class="no_games"> You don't have games in your library yet! </div>
-    {% endif %}
+                        <div class="star_rating" rating={{ game_review.rating }} star_size="small" id="game_rating_star"></div>
+                    </div>
+                {% endfor %}
+            </div>
+        {% else %}
+            <div class="no_games"> You don't have games in your library yet! </div>
+        {% endif %}
 
 
-    {% load static %}
-    <script src="{% static 'js/stars.js' %}"></script>
+        {% load static %}
+        <script src="{% static 'js/stars.js' %}"></script>
+    </div>
 </body>
 
 </html>

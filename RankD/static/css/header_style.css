@@ -1,10 +1,142 @@
-header {
-    height: 80px;
-    width: 100%;
+.navbar{
+    overflow: hidden;
     background-color: #4952b3;
-    color: white;
+    position: fixed; /* Set the navbar to fixed position */
+    top: 0; /* Position the navbar at the top of the page */
+    width: 100%; /* Full width */
+}
 
-    font-family: 'Fredoka';
+.navbar #logo_div{
+    float: left;
+    display: block;
+    color: #f2f2f2;
+    text-align: center;
+    padding: 8px 12px;
+    text-decoration: none;
+}
+
+.navbar #logo_img {
+    max-height: 72px;
+    cursor: pointer; 
+}
+
+.navbar #user_icon {
+    background-color: white;
+    max-height: 72px;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+.navbar .nav_item{
+    float: right;
+    display: block;
+    color: #f2f2f2;
+    text-align: center;
+    padding: 8px 12px;
+    text-decoration: none;
+    align-items: center;
+}
+
+.friends_pop_up {
+    display: none;
+    position: fixed;
+    right: 50px;
+
+    min-height: 80px;
+    max-height: 400px;
+    width: 300px;
+    
+    background-color: #4952b3;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+}
+
+.friends_pop_up .add_friend {
+    background-color: white;
+    
+    border-color: grey;
+    
+    margin: 5px;
+    height: 72px;
+
+    overflow: hidden;
+}
+
+.friends_pop_up .add_friend #add_icon{
+    font-size: 48px;
+    color: #4952b3; 
+    float: right;
+    margin-top: 5px;
+    margin-right: 8px;
+    
+}
+
+.friends_pop_up .friends_list {
+    display: block;
+    right: 50px;
+
+    min-height: 240px;
+    max-height: 400px;
+    width: 300px;
+    
+    background-color: #4952b3;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    overflow-y: auto;
+}
+
+.friends_pop_up .friends_list .friend_content {
+    background-color: white;
+    
+    border-color: grey;
+    
+    margin: 5px;
+    height: 72px;
+
+    overflow: hidden;
+}
+
+.friends_pop_up .friends_list .friend_content img {
+    max-width: 72px;
+    float: left;
+}
+
+.friends_pop_up .friends_list .friend_content #friends_name {
+    font-size: 18px;
+    float: left;
+    text-align: center;
+    margin: 10px;
+    margin-top: 24px;
+}
+
+.profile_pop_up {
+    display: none;
+    position: fixed;
+    right: 18px;
+
+    height: 72px;
+    width: 180px;
+    
+    background-color: #4952b3;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+}
+
+.profile_pop_up .log_out {
+    background-color: white;
+    color: white;
+    
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    
+    margin: 5px;
+
+    overflow: hidden;
+}
+
+.profile_pop_up .log_out #log_out_icon{
+    font-size: 36px;
+    color: white; 
+    float: right;
+    margin-top: 12px;
+    margin-right: 10px;
+    
 }
 
 * {
@@ -13,91 +145,15 @@ header {
 }
 
 
-
-.logo {
-    max-width: 13%;
-    height: auto;
-    cursor: pointer; 
-
-    position: absolute;
-    left: 1%;
-    top: 8px;
-}
-
-.welcome_username {
-    font-size: 25px;
-
-    position: absolute;
-    top: 25px;
-    right: 14.5%;
-    text-align: right;
-}
-
 #my_friends {
     font-family: 'Fredoka';
     font-size: 25px;
-    color: black;
-    background: none;
-    border: none;
-    cursor: pointer;
-
-    position: absolute;
-    top: 25px;
-    right: 6%;
-    text-align: right;
-}
-
-#friends_popup {
-    display: none;
-    width: 200px;
-    height: 300px;
-    background-color: #4952b3;
-    border: 1px solid #000;
-    position: absolute;
-    top: 10%;
-    right: 5%;
-    z-index: 999;
-}
-
-/* Problem when reducing page - circle turns into semicircle */
-.circle {
-    width: 70px;
-    height: 70px;
-    background-color: white;
-    border-radius: 50%;
-    cursor: pointer;
-
-    position: absolute;
-    top: 4px;
-    right: 10px;
-}
-
-#profile_popup {
-    display: none;
-    width: 150px;
-    height: 50px;
-    background-color: #4952b3;
-    border: 1px solid #000;
-    position: absolute;
-    top: 80px;
-    right: 15px;
-    z-index: 999;
-}
-
-.log_out_button {
-    padding: 0;
-    border: none;
-    background: none;
     color: white;
+    background: none;
+    border: none;
     cursor: pointer;
-    /* Prevent the text from separating into two lines */
-    white-space: nowrap;
 
-    font-family: 'Fredoka';
-    font-size: 25px;
-
-    position: absolute;
-    top: 50%;
-    left: 35%;
-    transform: translate(-50%, -50%);
+    position: relative;
+    text-align: right;
+    left: 15%;
 }
