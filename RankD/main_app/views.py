@@ -123,7 +123,9 @@ class AddGameReviewView(CreateView):
         user = User.objects.filter(username=self.request.resolver_match.kwargs['username']).last()
         context['user'] = user
         
-        context['game'] = Game.objects.filter(name=game_name)
+        context['user_review'] = Review.objects.filter(game__name=game_name, user_id=user.id).last()
+        
+        context['game'] = Game.objects.filter(name=game_name).last()
         
         context['user_friends'] = [friendship.user2 for friendship in FriendList.objects.filter(user1_id=user.id)]
 
