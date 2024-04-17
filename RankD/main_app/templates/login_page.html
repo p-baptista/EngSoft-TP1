@@ -21,7 +21,7 @@
         {% endif %}
 
 
-        <form id="login_form", method="post">
+        <form id="login_form" method="post" onsubmit="return validate_form()">
             {% csrf_token %}
                 <div>
                     <h2 class="username">
@@ -52,15 +52,15 @@
                 </div>
             
                 <div>
-                    <input type="submit" value="Submit" class="enter_button">
+                    <input type="submit" value="Login" class="enter_button">
                 </div>
         </form>
 
         <script>
             function validate_form() {
-                var form = document.getElementById("create_account_form")
+                var form = document.getElementById("login_form")
                 if (form.checkValidity()) {
-                    alert("Account created successfully")
+                    alert("Logging in (or not)")
                 }
             }
         </script>

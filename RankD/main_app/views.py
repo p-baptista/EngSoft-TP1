@@ -1,5 +1,6 @@
 from typing import Any
 from django.http.response import HttpResponse as HttpResponse
+from datetime import datetime
 from django.shortcuts import render
 from django.views.generic import ListView, CreateView, UpdateView
 from django.http import HttpRequest, HttpResponseRedirect
@@ -141,16 +142,49 @@ class AddGameReviewView(CreateView):
     template_name="add_game_review.html"
     model = Review
     fields = ['platform', 'comment', 'rating']
-    # form = AddReviewForm
+    
+    def post(self, request, *args, **kwargs):
+        user = User.objects.filter(username=self.request.resolver_match.kwargs['username']).last()
+        game = Game.objects.filter(name=self.request.resolver_match.kwargs['gamename']).last()
+        
+        review = Review.objects.filter(
+            game__name=game.name,
+            user_id=user.id
+        ).last()
+        
+        if review:
+            review.comment = request.POST.get('comment')
+            review.rating = request.POST.get('game_rating')
+            review.save()
+            
+            return HttpResponseRedirect('/review-game')
+        
+        review_data = {
+            "user": user,
+            "game": game,
+            "platform": Platform.objects.filter(slang="PS4").last(),
+            "comment": request.POST.get('comment'),
+            "date": datetime.now(),
+            "rating": request.POST.get('game_rating'),
+        }
+        
+        new_review = Review(**review_data)
+        new_review.save()
+        
+        return HttpResponseRedirect('/review-game')
+        
     
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
+
         game_name = self.request.resolver_match.kwargs['gamename']
         
         user = User.objects.filter(username=self.request.resolver_match.kwargs['username']).last()
         context['user'] = user
         
-        context['game'] = Game.objects.filter(name=game_name)
+        context['user_review'] = Review.objects.filter(game__name=game_name, user_id=user.id).last()
+        
+        context['game'] = Game.objects.filter(name=game_name).last()
         
         context['user_friends'] = [friendship.user2 for friendship in FriendList.objects.filter(user1_id=user.id)]
 
