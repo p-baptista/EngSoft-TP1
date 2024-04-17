@@ -18,6 +18,10 @@
             <img src="{% static 'pics/RankD.png' %}" class="logo">
         </header>
 
+        {% if error %}
+            <p style="color:red;">{{error}}</p>
+        {% endif %}
+
         <h1>Create New Account</h1>
         
         {% if error %}
