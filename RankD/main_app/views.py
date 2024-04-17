@@ -1,7 +1,8 @@
 from datetime import datetime
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.views.generic import ListView, CreateView, UpdateView
 from django.http import HttpResponseRedirect
+from django.urls import reverse
 from main_app.models import *
 from main_app.forms import *
 
@@ -130,7 +131,8 @@ class AddGameReviewView(CreateView):
             review.rating = request.POST.get('game_rating')
             review.save()
             
-            return HttpResponseRedirect('/review-game')
+            redirect_url = reverse('review-game', kwargs={'username': user.username, 'gamename': game.name})
+            return redirect(redirect_url)
         
         review_data = {
             "user": user,
@@ -144,7 +146,8 @@ class AddGameReviewView(CreateView):
         new_review = Review(**review_data)
         new_review.save()
         
-        return HttpResponseRedirect('/review-game')
+        redirect_url = reverse('review-game', kwargs={'username': user.username, 'gamename': game.name})
+        return redirect(redirect_url)
         
     
     def get_context_data(self, **kwargs):
