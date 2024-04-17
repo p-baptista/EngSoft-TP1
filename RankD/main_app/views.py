@@ -135,7 +135,7 @@ class AddGameReviewView(CreateView):
         review_data = {
             "user": user,
             "game": game,
-            "platform": "None",
+            "platform": Platform.objects.filter(slang="PS4").last(),
             "comment": request.POST.get('comment'),
             "date": datetime.now(),
             "rating": request.POST.get('game_rating'),
