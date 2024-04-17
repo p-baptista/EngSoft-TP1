@@ -1,6 +1,8 @@
+from typing import Any
+from django.http.response import HttpResponse as HttpResponse
 from django.shortcuts import render
 from django.views.generic import ListView, CreateView, UpdateView
-from django.http import HttpResponseRedirect
+from django.http import HttpRequest, HttpResponseRedirect
 from main_app.models import *
 from main_app.forms import *
 
@@ -11,7 +13,23 @@ class LoginView(ListView):
     
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
+        
+        error = self.request.GET.get('error')
+        if error:
+            context['error'] = error
+            
         return context
+    
+    def post(self, request, *args, **kwargs):
+        user = User.objects.filter(username=request.POST.get('username'), password=request.POST.get('password')).last()
+        
+        if user:
+            user.is_authenticated = True
+            user.save()
+            
+            return HttpResponseRedirect(f'/{user.username}')
+        else:
+            return HttpResponseRedirect('/login' + '?error=Usuário e/ou senha não encontrados')
     
 class SignupView(CreateView):
     template_name = "signup.html"
@@ -70,10 +88,19 @@ class HomeView(ListView):
     template_name="home.html"
     model = User
     
+    def dispatch(self, request, *args, **kwargs):
+        user = User.objects.filter(username=self.request.resolver_match.kwargs['username']).last()
+        if user.is_authenticated == False:
+            return HttpResponseRedirect('/login' + '?error=Faça o login para entrar no app')
+        
+        return super().dispatch(request, *args, **kwargs)
+    
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         
         user = User.objects.filter(username=self.request.resolver_match.kwargs['username']).last()
+        if user.is_authenticated == False:
+            return HttpResponseRedirect('/login' + '?error=Faça o login para entrar no app')
         
         if user:
             context['user'] = user
