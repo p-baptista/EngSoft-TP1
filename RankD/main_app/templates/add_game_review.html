@@ -35,12 +35,17 @@
                 <form id="review_form", method="post" onsubmit="return validate_form()">
                     {% csrf_token %}
                     <div>
-                        <textarea class="user_review" name="comment">{{ user_review.comment }}...</textarea>
+                        <textarea class="user_review" name="comment">{{ user_review.comment }}</textarea>
                     </div>
                 
                     <div>
                         <h3 class="your_rating_txt"> Edit your rating: </h3>
                         <input type="number" id="game_rating" name="game_rating" min="0" max="10" step="1" value={{ user_review.rating }}>           
+                    </div>
+
+                    <div>
+                        <h3 class="your_rating_txt" style="left:0%;"> Insert the game platform: </h3>
+                        {{ form.platform }}         
                     </div>
                 
                     <div>
@@ -68,15 +73,6 @@
                 </form>
                 {% endif %}
             </div>
-                    
-            <script>
-                function validate_form() {
-                    var form = document.getElementById("review_form")
-                    if (form.checkValidity()) {
-                        alert("Review edited/created")
-                    }
-                }
-        </script>
 
         {% load static %}
         <script src="{% static 'js/stars.js' %}"></script>

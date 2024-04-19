@@ -159,10 +159,12 @@ class AddGameReviewView(CreateView):
             
             return HttpResponseRedirect('/review-game')
         
+        print(request.POST.get('platform'))
+        
         review_data = {
             "user": user,
             "game": game,
-            "platform": Platform.objects.filter(slang="PS4").last(),
+            "platform": request.POST.get('platform'),
             "comment": request.POST.get('comment'),
             "date": datetime.now(),
             "rating": request.POST.get('game_rating'),
