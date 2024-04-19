@@ -1,7 +1,8 @@
 from typing import Any
 from django.http.response import HttpResponse as HttpResponse
 from datetime import datetime
-from django.shortcuts import render
+from django.shortcuts import render, redirect
+from django.urls import reverse
 from django.views.generic import ListView, CreateView, UpdateView
 from django.http import HttpRequest, HttpResponseRedirect
 from main_app.models import *
@@ -152,19 +153,24 @@ class AddGameReviewView(CreateView):
             user_id=user.id
         ).last()
         
+        
+        platform_id = request.POST.get('platform')
+        platform_instance = Platform.objects.get(id=platform_id)
+        
         if review:
             review.comment = request.POST.get('comment')
             review.rating = request.POST.get('game_rating')
+            review.platform = platform_instance
+            
             review.save()
             
-            return HttpResponseRedirect('/review-game')
-        
-        print(request.POST.get('platform'))
+            redirect_url = reverse('review-game', kwargs={'username': user.username, 'gamename': game.name})
+            return redirect(redirect_url)
         
         review_data = {
             "user": user,
             "game": game,
-            "platform": request.POST.get('platform'),
+            "platform": platform_instance,
             "comment": request.POST.get('comment'),
             "date": datetime.now(),
             "rating": request.POST.get('game_rating'),
@@ -173,7 +179,9 @@ class AddGameReviewView(CreateView):
         new_review = Review(**review_data)
         new_review.save()
         
-        return HttpResponseRedirect('/review-game')
+        redirect_url = reverse('review-game', kwargs={'username': user.username, 'gamename': game.name})
+        return redirect(redirect_url)
+        
         
     
     def get_context_data(self, **kwargs):
