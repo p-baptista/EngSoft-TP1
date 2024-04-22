@@ -44,6 +44,7 @@ h3 {
     padding-left: 100px;
     padding-right: 100px;
     padding-top: 48px;
+    padding-bottom: 48px;
 }
 
 .profile_info .user_icon{
@@ -54,10 +55,15 @@ h3 {
 }
 
 .profile_info .user_icon #picture{
-    background-color: white;
-    border-radius: 50%;
-    max-height: 95%;
     float: right;
+    background-color: white;
+    width: 240px;
+    height: 240px;
+    border-radius: 50%;
+    object-fit: cover;
+
+    box-shadow: black;
+    padding: 64px;
 }
 
 .profile_info .profile_text{
@@ -66,13 +72,13 @@ h3 {
     
     float: right;
     padding: 48px;
-    padding-top: 84px;
-    padding-right: 10%px;
+    padding-right: 10px;
+    margin-top: 32px;
 }
 
 .profile_info .profile_text p{
     font-size: 32px;
-    
+    line-height: 64px;
 }
 
 .profile_info .profile_text b{
@@ -99,7 +105,7 @@ h3 {
 
 .game_cover {
     height: 85%;
-    width: auto;
+    aspect-ratio: 1080/1920;
 
     position: relative;
     left: 50%;
@@ -107,7 +113,8 @@ h3 {
 
     border: 4px solid black;
 
-    cursor: pointer;
+    overflow: hidden;
+    object-fit: cover;
 }
 
 .game_platform {

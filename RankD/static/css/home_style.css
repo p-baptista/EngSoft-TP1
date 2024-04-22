@@ -72,7 +72,7 @@ h3 {
 
 .game_cover {
     height: 85%;
-    width: auto;
+    aspect-ratio: 1080/1920;
 
     position: relative;
     left: 50%;
@@ -82,6 +82,7 @@ h3 {
 
     cursor: pointer;
 
+    overflow: hidden;
     object-fit: cover;
 }
 
