@@ -23,9 +23,11 @@
 
 .navbar #user_icon {
     background-color: white;
-    max-height: 72px;
+    width: 72px;
+    height: 72px;
     border-radius: 50%;
     cursor: pointer;
+    object-fit: cover;
 }
 
 .navbar .nav_item{
@@ -36,6 +38,23 @@
     padding: 8px 12px;
     text-decoration: none;
     align-items: center;
+}
+
+.navbar .nav_item #profile_btn{
+    float: right;
+    display: block;
+    color: white;
+    
+    text-align: center;
+    text-decoration: none;
+    align-items: center;
+
+    width: 80px;
+    height: 80px;
+
+    padding: 8px 12px;
+    border-radius: 50%;
+    border-color: white;
 }
 
 .friends_pop_up {
@@ -87,26 +106,36 @@
 
 .friends_pop_up .friends_list .friend_content {
     background-color: white;
-    
     border-color: grey;
     
     margin: 5px;
     height: 72px;
 
     overflow: hidden;
+
+    cursor: pointer;
 }
 
 .friends_pop_up .friends_list .friend_content img {
-    max-width: 72px;
     float: left;
+    background-color: white;
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    cursor: pointer;
+    object-fit: cover;
+    margin-top: 8px;
+
+    box-shadow: black;
 }
 
 .friends_pop_up .friends_list .friend_content #friends_name {
-    font-size: 18px;
+    font-size: 20px;
     float: left;
     text-align: center;
     margin: 10px;
     margin-top: 24px;
+    margin-left: 16px;
 }
 
 .profile_pop_up {

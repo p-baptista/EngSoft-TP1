@@ -5,14 +5,11 @@
     <meta charset="UTF-8">
 
     {% load static %}
-    <link rel="stylesheet" type="text/css" href="{% static 'css/home_style.css' %}"/>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/profile.css' %}"/>
 
     <title>
-        {{ user.username }}'s Home / RankD
+        {{ user.username }}'s Profile / RankD
     </title>
-
-    <!-- This corrects a js bug for some reason -->
-    <link rel="shortcut icon" href="#">
 </head>
 
 
@@ -21,16 +18,23 @@
 
     <!--Adding logic-->
     <div style="margin-top: 100px;">
-        <h3>Find new games!</h3>
 
-        <input type="text" id="search_bar" name="searched">
-        
-        <h3>My games</h3>
+        <div class="profile_info">
+            <div class="user_icon">
+                <img src="{% get_media_prefix %}{{friend.icon_path}}" id="picture">
+            </div>
+            <div class="profile_text">
+                <p><b>User's name:</b> {{ friend.username }}</p>
+                <p><b>User's email:</b> {{ friend.email }}</p>
+                <p><b>Games reviewed:</b> {{ games_reviewed }}</p>
+            </div>
+        </div>
 
+        <h3>{{ friend.username }}'s Reviews</h3>
         
-        {% if user_reviews %}
+        {% if friend_reviews %}
             <div class="game_grid">
-                {% for game_review in user_reviews %}
+                {% for game_review in friend_reviews %}
                     <div class="game_item">
                         {% load static %}
                         <a href="/{{ user.username }}/review-page/{{ game_review.game.name }}">
@@ -48,12 +52,14 @@
                 {% endfor %}
             </div>
         {% else %}
-            <div class="no_games"> You don't have games in your library yet! </div>
+            <div class="no_games"> {{ friend.username}} hasn't reviewed any games yet. </div>
         {% endif %}
 
 
         {% load static %}
         <script src="{% static 'js/stars.js' %}"></script>
+        {% load static %}
+        <script src="{% static 'js/home_functions.js' %}"></script>
     </div>
 </body>
 

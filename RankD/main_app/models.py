@@ -5,7 +5,7 @@ class User(models.Model):
     email = models.CharField(max_length=255)
     username = models.CharField(max_length=255)
     password = models.CharField(max_length=255)
-    icon_path = models.CharField(max_length=255, blank=True)
+    icon_path = models.ImageField(upload_to='user_images', default='default/default_user_icon.png')
     is_authenticated = models.BooleanField(max_length=255, blank=True, null=True, default=False)
     
     def __str__(self):
@@ -15,7 +15,7 @@ class Game(models.Model):
     name = models.CharField(max_length=255)
     studio = models.CharField(max_length=255)
     release_date = models.DateField()
-    cover_path = models.CharField(max_length=255, blank=True)
+    cover_path = models.ImageField(upload_to='game_covers', default='default/default_game_icon.png')
     mean_rating = models.IntegerField(blank=True, null=True)
     
     def __str__(self):
@@ -49,5 +49,5 @@ class FriendList(models.Model):
     user2 = models.ForeignKey(User, on_delete=models.CASCADE, related_name='friend_lists_as_user2')
     
     def __str__(self):
-        return f'{self.user1.name} - {self.user2.name}'
+        return f'{self.user1.username} - {self.user2.username}'
     
