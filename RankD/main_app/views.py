@@ -217,3 +217,27 @@ class AddGameReviewView(CreateView):
         context['user_friends'] = [friendship.user2 for friendship in FriendList.objects.filter(user1_id=user.id)]
 
         return context    
+    
+class ResetPasswordView(ListView):
+    template_name = "reset_password.html"
+    model = User
+    
+    # def get_context_data(self, **kwargs):
+    #     context = super().get_context_data(**kwargs)
+        
+    #     error = self.request.GET.get('error')
+    #     if error:
+    #         context['error'] = error
+            
+    #     return context
+    
+    # def post(self, request, *args, **kwargs):
+    #     user = User.objects.filter(username=request.POST.get('username'), password=request.POST.get('password')).last()
+        
+    #     if user:
+    #         user.is_authenticated = True
+    #         user.save()
+            
+    #         return HttpResponseRedirect(f'/{user.username}')
+    #     else:
+    #         return HttpResponseRedirect('/login' + '?error=Usuário e/ou senha não encontrados')
