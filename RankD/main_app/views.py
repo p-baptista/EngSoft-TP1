@@ -112,9 +112,7 @@ class HomeView(ListView):
             context['user_friends'] = [friendship.user2 for friendship in FriendList.objects.filter(user1__username = user.username)]
             
             context['user_reviews'] = Review.objects.filter(user_id=user.id)
-            
-            # Colocar game_query assim - NO MÁXIMO 5 JOGOS
-            context['game_query'] = Game.objects.filter(name__in=["Portal", "miranha"])
+
         return context
 
     
