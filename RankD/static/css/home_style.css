@@ -74,7 +74,7 @@ h3 {
 #search_popup {
     display: none;
     width: 45%;
-    height: 350px;
+    height: 50px;
     z-index: 100;
     border-radius: 10px;
 

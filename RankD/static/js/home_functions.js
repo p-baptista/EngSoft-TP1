@@ -3,6 +3,7 @@ document.addEventListener("DOMContentLoaded", function() {
     const searchButton = document.getElementById("search_button");
     const searchInput = document.getElementById("search_bar");
     const searchPopup = document.getElementById("search_popup");
+    const gamesQueried = document.getElementsByClassName("searched_game");
 
     searchButton.addEventListener("click", function(event) {
         event.preventDefault(); // Prevent the default form submission behavior
@@ -16,6 +17,12 @@ document.addEventListener("DOMContentLoaded", function() {
 
         // Display the search suggestions popup
         searchPopup.style.display = "block";
+
+        // Change search popup height
+        if (gamesQueried.length > 0) {
+            const gameHeight = gamesQueried[0].clientHeight; // Use clientHeight to get the actual height of the element
+            searchPopup.style.height = (gameHeight * gamesQueried.length) + "px"; // Add "px" to set the height in pixels
+        }
     });
 
     // Hide the search suggestions popup when clicking outside of it

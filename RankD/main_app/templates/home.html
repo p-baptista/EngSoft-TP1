@@ -10,6 +10,9 @@
     <title>
         {{ user.username }}'s Home / RankD
     </title>
+
+    <!-- This corrects a js bug for some reason -->
+    <link rel="shortcut icon" href="#">
 </head>
 
 
@@ -20,28 +23,28 @@
     <div style="margin-top: 100px;">
         <h3>Find new games!</h3>
 
-            <form id="search_form">
-                <div class="search_area">
-                    <input type="text" id="search_bar" name="searched">
-                    <input type="submit" value="Search" id="search_button">
-                </div>
+        <form id="search_form">
+            <div class="search_area">
+                <input type="text" id="search_bar" name="searched">
+                <input type="submit" value="Search" id="search_button">
+            </div>
 
-                <div id="search_popup">
-                    {% if game_query %}
-                        <div id="searched_games_container">
-                            {% for game in game_query %}
-                                <a class="searched_game" href="/{{ user.username }}/review-page/{{ game.name }}">
-                                    <img src="{% static 'pics/default_game_icon.png' %}" id="game_icon">
-                                    <h4> {{ game.name }} </h4>
-                                    <hr style="border: 1px dotted black; position:relative; top:-90%; width: 99.5%;">
-                                </a>
-                            {% endfor %}
-                        </div>
-                    {% else %}
-                        <h4 style="text-align: center; font-size: 30px;">No games were found!<h4>
-                    {% endif %}
-                </div>
-            </form>
+            <div id="search_popup">
+                {% if game_query %}
+                    <div id="searched_games_container">
+                        {% for game in game_query %}
+                            <a class="searched_game" href="/{{ user.username }}/review-page/{{ game.name }}">
+                                <img src="{% static 'pics/default_game_icon.png' %}" id="game_icon">
+                                <h4> {{ game.name }} </h4>
+                                <hr style="border: 1px dotted black; position:relative; top:-85%; width: 99.5%;">
+                            </a>
+                        {% endfor %}
+                    </div>
+                {% else %}
+                    <h4 style="text-align: center; font-size: 30px;">No games were found!<h4>
+                {% endif %}
+            </div>
+        </form>
         
         <h3>My games</h3>
 
