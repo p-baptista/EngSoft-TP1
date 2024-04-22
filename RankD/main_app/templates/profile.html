@@ -21,7 +21,7 @@
 
         <div class="profile_info">
             <div class="user_icon">
-                <img src="{% static 'pics/default_user_icon.png' %}" id="picture">
+                <img src="{% get_media_prefix %}{{user.icon_path}}" id="picture">
             </div>
             <div class="profile_text">
                 <p><b>User's name:</b> {{ user.username }}</p>

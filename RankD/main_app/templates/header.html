@@ -23,7 +23,7 @@
             </div>
             
             <div class="nav_item" id="profile_btn">
-                <img src="{% static 'pics/default_user_icon.png' %}" id="user_icon">
+                <img src="{% get_media_prefix %}{{user.icon_path}}" id="user_icon">
             </div>
 
             <div class="nav_item">
@@ -48,8 +48,8 @@
                 {% if user_friends %}
                     {% for friend in user_friends %}
                         <div class="friend_content">
-                            <img src="{% static 'pics/default_user_icon.png' %}" id="user_icon">
-                            <p id="friends_name">{{ friend.name }}</p>
+                            <img src="{% get_media_prefix %}{{friend.icon_path}}" id="user_icon">
+                            <p id="friends_name">{{ friend.username }}</p>
                         </div>
                     {% endfor %}
                 {% else %}
