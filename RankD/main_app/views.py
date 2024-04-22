@@ -116,6 +116,24 @@ class HomeView(ListView):
             # Colocar game_query assim - NO MÁXIMO 5 JOGOS
             context['game_query'] = Game.objects.filter(name__in=["Portal", "miranha"])
         return context
+    
+class ProfileView(ListView):
+    template_name="profile.html"
+    model = User
+    
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        
+        user = User.objects.filter(username=self.request.resolver_match.kwargs['username']).last()
+
+        if user:
+            context['user'] = user
+            
+            context['user_reviews'] = Review.objects.filter(user_id=user.id)
+
+            context['games_reviewed'] = len(Review.objects.filter(user_id=user.id))
+            
+        return context
 
     
 class GameReviewView(ListView):
