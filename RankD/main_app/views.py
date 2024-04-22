@@ -114,6 +114,24 @@ class HomeView(ListView):
             context['user_reviews'] = Review.objects.filter(user_id=user.id)
 
         return context
+    
+class ProfileView(ListView):
+    template_name="profile.html"
+    model = User
+    
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        
+        user = User.objects.filter(username=self.request.resolver_match.kwargs['username']).last()
+
+        if user:
+            context['user'] = user
+            
+            context['user_reviews'] = Review.objects.filter(user_id=user.id)
+
+            context['games_reviewed'] = len(Review.objects.filter(user_id=user.id))
+            
+        return context
 
     
 class GameReviewView(ListView):
