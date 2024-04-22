@@ -1,6 +1,7 @@
 body {
     background-color: white;
     font-family: 'Fredoka', sans-serif;
+    overflow-x: hidden;
 
     color: black;
 }
@@ -36,24 +37,51 @@ h3 {
     font-size: 50px;
 }
 
-#search_bar {
-    width: 40%;
-    height: 40px;
-    margin-bottom: 40px;
+.profile_info {
+    display: flex;
 
-    position:relative;
-    top: 25px;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    
-    border-radius: 10px;
-    font-size: 35px;
-    font-family: 'Fredoka';
-    text-align: center;
-
-    background-color: #676ec2;
+    max-height: 320px;
+    padding-left: 100px;
+    padding-right: 100px;
+    padding-top: 48px;
 }
 
+.profile_info .user_icon{
+    max-height: 75%;
+    width: 50%;
+
+    float: left;
+}
+
+.profile_info .user_icon #picture{
+    background-color: white;
+    border-radius: 50%;
+    max-height: 95%;
+    float: right;
+}
+
+.profile_info .profile_text{
+    max-height: 75%;
+    width: 50%;
+    
+    float: right;
+    padding: 48px;
+    padding-top: 84px;
+    padding-right: 10%px;
+}
+
+.profile_info .profile_text p{
+    font-size: 32px;
+    
+}
+
+.profile_info .profile_text b{
+    color: #4952b3;
+    
+}
+
+
+/* User's games grid */
 .game_grid {
     margin-top: 1%;
     margin-bottom: 4%;
@@ -65,7 +93,6 @@ h3 {
     gap: 20px;
 }
 
-/* Inside game portion of the grid */
 .game_item {
     height: 300px;
 }
@@ -81,8 +108,6 @@ h3 {
     border: 4px solid black;
 
     cursor: pointer;
-
-    object-fit: cover;
 }
 
 .game_platform {
@@ -99,7 +124,6 @@ h3 {
     top: -10%;
     left: 38%;
 }
-
 
 .no_games {
     position: relative;
