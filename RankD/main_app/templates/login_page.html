@@ -23,10 +23,8 @@
 
         <form id="login_form" method="post" onsubmit="return validate_form()">
             {% csrf_token %}
-                <div>
-                    <h2 class="username">
-                        Username
-                    </h2>
+                <div class="input_section">
+                    <p>Username</p>
 
                     <input type="text" id="username_bar" name="username"
                     placeholder="Username"
@@ -35,10 +33,8 @@
                     required>
                 </div>
             
-                <div>
-                    <h2 class="password">
-                        Password
-                    </h2>
+                <div class="input_section">
+                    <p>Password</p>
             
                     <input type="password" id="password_bar" name="password"
                     placeholder="Password" 
@@ -47,17 +43,19 @@
                     required>            
                 </div>
 
-                <div>
-                    <button onclick="forgot_password()" class="forgot_password_button"> Forgot your password? </button>
-                </div>
+                <div class="input_section" style="padding-top: 0px;">
+                    <a href="/reset_password">
+                        <div class="new_account_button"> Forgot your password? </div>
+                    </a>
+                </div>                
             
-                <div>
-                    <input type="submit" value="Login" class="enter_button">
+                <div class="input_section">
+                    <input type="submit" value="Login" class="enter_button" style="font-size: 36px;">
                 </div>
         </form>
 
-        <a href="/signup">
-            <div class="new_account_button"> Don't have an account? </div>
+        <a href="/signup" style="padding: 10px;">
+            <div class="new_account_button"> Don't have an account? Sign up now.</div>
         </a>
     
     </body>

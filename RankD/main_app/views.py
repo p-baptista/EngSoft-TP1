@@ -112,9 +112,7 @@ class HomeView(ListView):
             context['user_friends'] = [friendship.user2 for friendship in FriendList.objects.filter(user1__username = user.username)]
             
             context['user_reviews'] = Review.objects.filter(user_id=user.id)
-            
-            # Colocar game_query assim - NO MÁXIMO 5 JOGOS
-            context['game_query'] = Game.objects.filter(name__in=["Portal", "miranha"])
+
         return context
     
 class ProfileView(ListView):
@@ -125,13 +123,18 @@ class ProfileView(ListView):
         context = super().get_context_data(**kwargs)
         
         user = User.objects.filter(username=self.request.resolver_match.kwargs['username']).last()
+        friend = User.objects.filter(username=self.request.resolver_match.kwargs['friend']).last()
 
-        if user:
+        if user and friend:
             context['user'] = user
-            
-            context['user_reviews'] = Review.objects.filter(user_id=user.id)
 
-            context['games_reviewed'] = len(Review.objects.filter(user_id=user.id))
+            context['user_friends'] = [friendship.user2 for friendship in FriendList.objects.filter(user1__username = user.username)]
+
+            context['friend'] = friend
+            
+            context['friend_reviews'] = Review.objects.filter(user_id=friend.id)
+
+            context['games_reviewed'] = len(Review.objects.filter(user_id=friend.id))
             
         return context
 
@@ -219,3 +222,27 @@ class AddGameReviewView(CreateView):
         context['user_friends'] = [friendship.user2 for friendship in FriendList.objects.filter(user1_id=user.id)]
 
         return context    
+    
+class ResetPasswordView(ListView):
+    template_name = "reset_password.html"
+    model = User
+    
+    # def get_context_data(self, **kwargs):
+    #     context = super().get_context_data(**kwargs)
+        
+    #     error = self.request.GET.get('error')
+    #     if error:
+    #         context['error'] = error
+            
+    #     return context
+    
+    # def post(self, request, *args, **kwargs):
+    #     user = User.objects.filter(username=request.POST.get('username'), password=request.POST.get('password')).last()
+        
+    #     if user:
+    #         user.is_authenticated = True
+    #         user.save()
+            
+    #         return HttpResponseRedirect(f'/{user.username}')
+    #     else:
+    #         return HttpResponseRedirect('/login' + '?error=Usuário e/ou senha não encontrados')

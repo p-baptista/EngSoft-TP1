@@ -22,7 +22,7 @@
             <p style="color:red;">{{error}}</p>
         {% endif %}
 
-        <h1>Create New Account</h1>
+        <h1 style="margin: 16px; margin-top: 40px;">Create New Account</h1>
         
         {% if error %}
             <p style="color:red;">{{error}}</p>
@@ -60,6 +60,11 @@
                     onfocus="this.placeholder = ''"
                     onblur="this.placeholder = 'Confirm Password'"
                     required>
+                </div>
+
+                <div class="file_input">
+                    <p style="padding: 0px; margin: 0px; font-size: 38px;">Profile Picture</p>
+                    <input type="file" id= "user_image" name="user_image">
                 </div>
             
                 <div>

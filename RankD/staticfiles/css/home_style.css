@@ -5,6 +5,31 @@ body {
     color: black;
 }
 
+/* Star logic -> maybe there's a way to separate it? */
+.star {
+    display: inline-block;
+    width: 48px;
+    height: 42px;
+    background-size: contain;
+}
+
+.full {
+    background-image: url('../pics/blue_star.png');
+}
+
+.half {
+    background-image: url('../pics/half_blue_star.png');
+}
+
+.empty {
+    background-image: url('../pics/empty_star.png');
+}
+
+.small {
+    width: 26px;
+    height: 22px;
+}
+
 /* Search bar title and my games title */
 h3 {
     text-align: center;
@@ -30,7 +55,7 @@ h3 {
 }
 
 .game_grid {
-    background-color: red;
+    margin-top: 1%;
     margin-bottom: 4%;
     margin-left: 5%;
     margin-right: 5%;
@@ -46,6 +71,38 @@ h3 {
 }
 
 .game_cover {
-    width: 70%;
-    height: 87%;
+    height: 85%;
+    width: auto;
+
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+
+    border: 4px solid black;
+
+    cursor: pointer;
+}
+
+.game_platform {
+    color: black;
+    font-size: 150%;
+
+    position: relative;
+    top: -1%;
+    left: 23%;
+}
+
+#game_rating_star {
+    position: relative;
+    top: -10%;
+    left: 38%;
+}
+
+
+.no_games {
+    position: relative;
+    top: 150px;
+
+    font-size: 40px;
+    text-align: center;
 }
