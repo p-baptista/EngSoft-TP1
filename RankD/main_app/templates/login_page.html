@@ -15,50 +15,51 @@
     <body>
         {% load static %}
         <img src="{% static 'pics/RankD.png' %}" class="logo">
-        
-        <h2 class="username">
-            Username
-        </h2>
 
-        <input type="text" id="username_bar" name="username">
+        {% if error %}
+            <p style="color:red;">{{error}}</p>
+        {% endif %}
 
-        <h2 class="password">
-            Password
-        </h2>
 
-        <input type="password" id="password_bar" name="password">
+        <form id="login_form" method="post" onsubmit="return validate_form()">
+            {% csrf_token %}
+                <div>
+                    <h2 class="username">
+                        Username
+                    </h2>
 
-        <!-- Forgot password button -->
-        <button onclick="forgot_password()" class="forgot_password_button"> Forgot your password? </button>
-                
-        <script>
-            function forgot_password() {
-                alert('Password forgotten :(');
-            }
-        </script>
-
-        <!-- Enter button -->
-        <button onclick="return_credentials()" class="enter_button"> Enter </button>
-        
-        <script>
-            function return_credentials() {
-                var username = document.getElementById('username_bar').value;
-                var password = document.getElementById('password_bar').value;
-
-                alert('Username: ' + username + '\nPassword: ' + password);
-            }
-        </script>
-
-        <!-- New account button -->
-        <button onclick="create_account()" class="new_account_button"> Don't have an account? </button>
-        
-        <script>
-            function create_account() {
-                alert("let's create a new account!");
-            }
-        </script>
-
+                    <input type="text" id="username_bar" name="username"
+                    placeholder="Username"
+                    onfocus="this.placeholder = ''"
+                    onblur="this.placeholder = 'Username'"
+                    required>
+                </div>
             
+                <div>
+                    <h2 class="password">
+                        Password
+                    </h2>
+            
+                    <input type="password" id="password_bar" name="password"
+                    placeholder="Password" 
+                    onfocus="this.placeholder = ''"
+                    onblur="this.placeholder = 'Password'"
+                    required>            
+                </div>
+
+                <div>
+                    <button onclick="forgot_password()" class="forgot_password_button"> Forgot your password? </button>
+                </div>
+            
+                <div>
+                    <input type="submit" value="Login" class="enter_button">
+                </div>
+        </form>
+
+        <a href="/signup">
+            <div class="new_account_button"> Don't have an account? </div>
+        </a>
+    
     </body>
 
 

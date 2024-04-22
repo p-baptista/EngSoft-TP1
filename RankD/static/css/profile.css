@@ -37,87 +37,49 @@ h3 {
     font-size: 50px;
 }
 
-#search_bar {
-    width: 40%;
-    height: 40px;
-    margin-bottom: 40px;
+.profile_info {
+    display: flex;
 
-    position: relative;
-    left: 50%;
-    transform: translateX(-50%);
-
-    border-radius: 10px;
-    font-size: 35px;
-    font-family: 'Fredoka';
-    text-align: center;
-
-    background-color: #676ec2;
+    max-height: 320px;
+    padding-left: 100px;
+    padding-right: 100px;
+    padding-top: 48px;
 }
 
-#search_button {
-    width: 10%;
-    height: 8%;
+.profile_info .user_icon{
+    max-height: 75%;
+    width: 50%;
 
-    position: relative;
-    top: -3px;
-    left: 30%;
+    float: left;
+}
+
+.profile_info .user_icon #picture{
+    background-color: white;
+    border-radius: 50%;
+    max-height: 95%;
+    float: right;
+}
+
+.profile_info .profile_text{
+    max-height: 75%;
+    width: 50%;
     
-    font-size: 30px;
-    font-family: 'Fredoka';
-    border-radius: 10px;
+    float: right;
+    padding: 48px;
+    padding-top: 84px;
+    padding-right: 10%px;
+}
 
-    background-color: white;
+.profile_info .profile_text p{
+    font-size: 32px;
+    
+}
+
+.profile_info .profile_text b{
     color: #4952b3;
-    cursor: pointer;
+    
 }
 
-#search_popup {
-    display: none;
-    width: 45%;
-    height: 350px;
-    z-index: 100;
-    border-radius: 10px;
-
-    position: absolute;
-    top: 29%;
-    left: 50%;
-    transform: translateX(-50%);
-
-    background-color: white;
-    border: 2px solid black;
-}
-
-.searched_game {
-    display: block;
-    margin-bottom: 5px;
-
-    padding: 10px;
-    width: auto;
-    height: 50px;
-
-    color: inherit;
-    text-decoration: none;
-}
-
-.searched_game h4 {
-    font-family: "Fredoka";
-    font-size: 35px;
-
-    position: relative;
-    top: -113%;
-    left: 10%;
-}
-
-.searched_game #game_icon {
-    width: 50px;
-    height: auto;
-    display: inline-block;
-    vertical-align: left;
-    margin-right: 10px;
-
-    position: relative;
-    top: -10%;
-}
 
 /* User's games grid */
 .game_grid {
@@ -162,7 +124,6 @@ h3 {
     top: -10%;
     left: 38%;
 }
-
 
 .no_games {
     position: relative;

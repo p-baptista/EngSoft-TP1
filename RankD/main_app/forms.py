@@ -1,16 +1,6 @@
 from django import forms
-from main_app.models import *
+from .models import Platform
 
-class LoginForm(forms.Form):
-    email =  forms.CharField()
-    password = forms.CharField()
-    
-class AddReviewForm(forms.ModelForm):
-    platform = forms.ModelChoiceField(queryset=Platform.objects.all())
-    comment = forms.CharField(max_length=1000)
-    rating = forms.IntegerField(
-        validators=[
-            MaxValueValidator(10),
-            MinValueValidator(0)
-        ]
-    )
+class PlatformForm(forms.Form):
+    platform_choices = [(platform.id, platform.name) for platform in Platform.objects.all()]
+    platform = forms.ChoiceField(choices=platform_choices, label='Select Platform')

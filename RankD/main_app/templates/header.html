@@ -8,36 +8,68 @@
 
     {% load static %}
     <link rel="stylesheet" type="text/css" href="{% static 'css/header_style.css' %}"/>
-    
-    <link href='https://fonts.googleapis.com/css?family=Fredoka' rel='stylesheet'>
 
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link href='https://fonts.googleapis.com/css?family=Fredoka' rel='stylesheet'>
 </head>
 
 <body>
+    {% load static %}
+    <div class="navbar">
+        <div class="nav_item" id="logo_div">
+                <a href="/{{ user.username }}">
+                    <img src="{% static 'pics/RankD.png' %}" id="logo_img">
+                </a>
+            </div>
+            
+            <div class="nav_item" id="profile_btn">
+                <img src="{% static 'pics/default_user_icon.png' %}" id="user_icon">
+            </div>
 
-    <header>
-        {% load static %}
-        <a href="/{{ user.username }}">
-            <img src="{% static 'pics/RankD.png' %}" class="logo">
-        </a>
+            <div class="nav_item">
+                <button id="my_friends" style="padding: 20px; margin-right: 25px;"> My Friends </button>
+            </div>
+
+            <div class="nav_item" style="align-self: auto;">
+                <p style="font-size: 25px;margin-top: 20px;"> Welcome, {{ user.username }}! </p>  
+            </div>        
+        </div>
         
-        <h2 class="welcome_username"> Welcome, {{ user.username }}! </h2>
-    
-        <button id="my_friends"> My Friends </button>
-        <div id="friends_popup" class="popup">
+        <div class="friends_pop_up" id="friends_pop_up">
+            <div class="add_friend">
+                <button style="float: right; background-color: transparent; border: 0; cursor: pointer;">
+                    <i class="material-icons" id="add_icon" >group_add</i>
+                </button>
+                <input class="text" placeholder="Add new friends!" style="float: right; font-size: 18px; margin-top: 14px; margin-right: 5px; height: 32px;">
+                
+            </div>
+
+            <div class="friends_list">
+                {% if user_friends %}
+                    {% for friend in user_friends %}
+                        <div class="friend_content">
+                            <img src="{% static 'pics/default_user_icon.png' %}" id="user_icon">
+                            <p id="friends_name">{{ friend.name }}</p>
+                        </div>
+                    {% endfor %}
+                {% else %}
+                    <p style="color: white; font-size: 28px; width: auto; text-align: center; margin: 20px;">No Friends Yet!</p>
+                {% endif %}
+            </div>
+        </div>
+        
+        <div class="profile_pop_up" id="profile_pop_up">
+            <button class="log_out" style="float: right; background-color: transparent; border: 0; cursor: pointer;">
+                <i class="material-icons" id="log_out_icon" >exit_to_app</i>
+                <p style="float: right; font-size: 24px; margin: 16px; margin-right: 20px;">
+                    Log Out
+                </p>    
+            </button>
         </div>
 
+    </div>
 
-        <div id="border" class="circle"></div>
-        <!--Add user picture here - make sure there is a nice white border-->
-
-        <div id="profile_popup" class="popup">
-            <button onclick="log_out()" class="log_out_button">Log out</button>
-        </div>
-
-        {% load static %}
-        <script src="{% static 'js/header_functions.js' %}"></script>
-    </header>
-
+    {% load static %}
+    <script src="{% static 'js/header_functions.js' %}"></script>
 </body>
 </html>

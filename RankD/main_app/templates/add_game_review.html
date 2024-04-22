@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/add_game_review_style.css' %}"/>
+
+    <title>
+        {{ game.name }} / RankD
+    </title>
+    
+</head>
+
+
+<body>
+    {% include 'header.html' %}
+
+    <div style="margin-top: 100px;">
+        <!-- Cover and user rating -->
+        <div class="cover_border">
+            {% load static %}
+            <img onclick="go_to_game_review()" src="{% static game.cover_path %}" class="game_cover">
+            <h3 class="user_ratings"> User Ratings </h3>
+            <div class="star_rating" rating= {{ game.mean_rating }} id="game_rating_star"></div>
+        </div>
+
+        <!-- Review Form -->
+        <div class="user_review_div">
+            <h3 class="game_name"> {{ game.name }} </h3>
+            {% if user_review %}
+                <h3 class="your_review_txt"> Edit Review </h3>
+            
+                <form id="review_form", method="post" onsubmit="return validate_form()">
+                    {% csrf_token %}
+                    <div>
+                        <textarea class="user_review" name="comment">{{ user_review.comment }}</textarea>
+                    </div>
+                
+                    <div>
+                        <h3 class="your_rating_txt"> Edit your rating: </h3>
+                        <input type="number" id="game_rating" name="game_rating" min="0" max="10" step="1" value={{ user_review.rating }}>           
+                    </div>
+
+                    <div>
+                        <h3 class="your_rating_txt" style="left:0%;"> Insert the game platform: </h3>
+                        {{ form.platform }}         
+                    </div>
+                
+                    <div>
+                        <input type="submit" value="Edit Review" class="edit_review_button">
+                    </div>
+                </form>
+
+            {% else %}
+                <h3 class="your_review_txt"> Add Review </h3>
+                
+                <form id="review_form" method="post" onsubmit="return validate_form()">
+                    {% csrf_token %}
+                    <div>
+                        <textarea class="user_review" name="comment" placeholder="Add Review Here!"></textarea>
+                    </div>
+                
+                    <div>
+                        <h3 class="your_rating_txt"> Add your rating: </h3>
+                        <input type="number" id="game_rating" name="game_rating" min="0" max="10" step="1" placeholder="10">           
+                    </div>
+                
+                    <div>
+                        <h3 class="your_rating_txt" style="left:0%;"> Insert the game platform: </h3>
+                        {{ form.platform }}         
+                    </div>
+
+                    <div>
+                        <input type="submit" value="Add Review" class="edit_review_button">
+                    </div>
+                </form>
+                {% endif %}
+            </div>
+
+        {% load static %}
+        <script src="{% static 'js/stars.js' %}"></script>
+</body>
+
+</html>
