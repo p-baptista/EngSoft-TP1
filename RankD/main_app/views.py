@@ -113,8 +113,9 @@ class HomeView(ListView):
             
             context['user_reviews'] = Review.objects.filter(user_id=user.id)
 
-            # Colocar game_query assim - NO MÁXIMO 5 JOGOS
-            context['game_query'] = Game.objects.filter(name__in=["Portal", "Miranha"])
+            search_game_name = self.request.GET.get('searched')     
+            if search_game_name:
+                context['game_query'] = Game.objects.filter(name__contains=self.request.GET.get('searched'))
 
         return context
     
@@ -179,13 +180,22 @@ class AddGameReviewView(CreateView):
             user_id=user.id
         ).last()
         
+        new_game_rating = int(request.POST.get('game_rating'))
         
         platform_id = request.POST.get('platform')
         platform_instance = Platform.objects.get(id=platform_id)
         
         if review:
+            old_game_rating = review.rating
+            
+            number_of_reviews = Review.objects.filter(game__name=game.name).count()
+            new_mean_rating = (((game.mean_rating * number_of_reviews) - old_game_rating) + new_game_rating) / number_of_reviews
+            
+            game.mean_rating = new_mean_rating
+            game.save()
+            
             review.comment = request.POST.get('comment')
-            review.rating = request.POST.get('game_rating')
+            review.rating = new_game_rating
             review.platform = platform_instance
             
             review.save()
@@ -193,13 +203,21 @@ class AddGameReviewView(CreateView):
             redirect_url = reverse('review-game', kwargs={'username': user.username, 'gamename': game.name})
             return redirect(redirect_url)
         
+        if game.mean_rating:
+            new_mean = (game.mean_rating + new_game_rating)/2
+            game.mean_rating = new_mean
+        else:
+            game.mean_rating = new_game_rating
+            
+        game.save()
+            
         review_data = {
             "user": user,
             "game": game,
             "platform": platform_instance,
             "comment": request.POST.get('comment'),
             "date": datetime.now(),
-            "rating": request.POST.get('game_rating'),
+            "rating": new_game_rating,
         }
         
         new_review = Review(**review_data)
