@@ -113,8 +113,9 @@ class HomeView(ListView):
             
             context['user_reviews'] = Review.objects.filter(user_id=user.id)
 
-            # Colocar game_query assim - NO MÁXIMO 5 JOGOS
-            context['game_query'] = Game.objects.filter(name__in=["Portal", "Miranha"])
+            search_game_name = self.request.GET.get('searched')     
+            if search_game_name:
+                context['game_query'] = Game.objects.filter(name__contains=self.request.GET.get('searched'))
 
         return context
     
