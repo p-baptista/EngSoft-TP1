@@ -21,25 +21,29 @@
 
         <div class="profile_info">
             <div class="user_icon">
-                <img src="{% get_media_prefix %}{{user.icon_path}}" id="picture">
+                <img src="{% get_media_prefix %}{{friend.icon_path}}" id="picture">
             </div>
             <div class="profile_text">
-                <p><b>User's name:</b> {{ user.username }}</p>
-                <p><b>User's email:</b> {{ user.email }}</p>
+                <p><b>User's name:</b> {{ friend.username }}</p>
+                <p><b>User's email:</b> {{ friend.email }}</p>
                 <p><b>Games reviewed:</b> {{ games_reviewed }}</p>
             </div>
         </div>
 
-        <h3>{{ user.username }}'s Reviews</h3>
+        <h3>{{ friend.username }}'s Reviews</h3>
         
-        {% if user_reviews %}
+        {% if friend_reviews %}
             <div class="game_grid">
-                {% for game_review in user_reviews %}
+                {% for game_review in friend_reviews %}
                     <div class="game_item">
                         {% load static %}
                         <a href="/{{ user.username }}/review-page/{{ game_review.game.name }}">
-                            <img src="{% static game_review.game.cover_path %}" class="game_cover">
+                            <img src="{% get_media_prefix %}{{game_review.game.cover_path}}" class="game_cover">
                         </a>
+
+                        <p style="text-align: center; font-size: 32px;">
+                            {{ game_review.game.name }}
+                        </p>
                         
                         <h4 class="game_platform"> {{ game_review.platform.slang }} </h4>
 
@@ -48,7 +52,7 @@
                 {% endfor %}
             </div>
         {% else %}
-            <div class="no_games"> You don't have games in your library yet! </div>
+            <div class="no_games"> {{ friend.username}} hasn't reviewed any games yet. </div>
         {% endif %}
 
 
