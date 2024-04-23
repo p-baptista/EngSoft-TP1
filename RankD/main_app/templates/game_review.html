@@ -16,39 +16,55 @@
 
 <body>
     {% include 'header.html' %}
-
+    {% load static %}
     <div style="margin-top: 100px;">
         <!-- Cover and user rating -->
-        <div class="cover_border">
-            {% load static %}
-            <img onclick="go_to_game_review()" src="{% get_media_prefix %}{{game.cover_path}}" class="game_cover">
-            <h3 class="user_ratings"> User Ratings </h3>
-            <div class="star_rating" rating= {{ game.mean_rating }} id="game_rating_star"></div>
-        </div>
 
-        <!-- User review -->
-        <div class="user_review_div">
-
+        <div class="user_review">
+            <div class="game_info">
+                <div class="game_cover">
+                    <img src="{% get_media_prefix %}{{game.cover_path}}">
+                </div>
+                <div class="user_ratings" style="padding-top: 10px;">
+                    <p class="user_ratings"> User Ratings </p>
+                    <div class="star_rating" rating= {{ game.mean_rating }}></div>
+                </div>
+            </div>
             {% if user_review %}
-                <h3 class="your_review_txt"> Your Review </h3>
-                <h3 class="game_name"> {{ user_review.game.name }} </h3>
-                <div class="star_rating" rating= {{ user_review.rating }} star_size="medium" id="user_rating_star"></div>
-                <span class="user_review"> {{ user_review.comment }} </span> 
-
-                <a href="/{{ user.username }}/add-review/{{ game.name }}">
-                    <button class="edit_review_button"> Edit Your Review! </button>
-                </a>
+                <div class="review_info">
+                    <div class="your_rating" style="display: flex; width: 100%; justify-content:space-between;">
+                        <div style="float: left; justify-self: self-start; width: 50%;">
+                            <p style="font-size: 36px;">Your review for</p>
+                            <p id="game_name">{{ game.name }}</p>
+                        </div>
+                        <div style="float: right;">
+                            <a href="/{{ user.username }}/add-review/{{ game.name }}" style="padding-bottom: 10px; float: right;">
+                                <button class="edit_review_button"> Edit Your Review! </button>
+                            </a>
+                            <div class="star_rating" rating= {{ user_review.rating }}></div>
+                        </div>
+                    </div>
+                    <div class="review_text">
+                        <p id="review_text">{{user_review.comment}}</p>
+                    </div>
+                </div>
             {% else %}
-                <h3 class="game_name" style="top: 2%;"> {{ game.name }} </h3>
-                <h3 class="no_review"> You haven't reviewed this game yet! </h3>
-
-                <a href="/{{ user.username }}/add-review/{{ game.name }}">
-                    <button class="add_review_button"> Add Your Review! </button>
-                </a>
+                <div class="missing_review" style="width: 80%; margin: 36px;">
+                    <p id="game_name">{{ game.name }}</p>
+                    <div style="text-align: center; justify-content: center; height: 80%;">
+                        <div style="margin: 64px">
+                            <p style="font-size: 56px;"> You haven't reviewed this game yet! </p>
+                            <a href="/{{ user.username }}/add-review/{{ game.name }}">
+                                <button class="add_review_button"> Add Your Review! </button>
+                            </a>
+                        </div>
+                        
+                    </div>
+                </div>
             {% endif %}
         </div>
 
-        <hr style="border: 1px dotted black; position:absolute; top: 700px; width: 99.5%; border-spacing: 100px;">
+        <hr style="border: 1px full black; width: 100%; border-spacing: 100px;">
 
         <!-- Other user reviews -->
         <div class="friend_reviews_div">

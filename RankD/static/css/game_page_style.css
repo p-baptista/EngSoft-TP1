@@ -30,94 +30,96 @@ body {
     height: 32px;
 }
 
+.game_info {
+    float: left;
+}
+
+.review_info #game_name{
+    font-size: 80px;
+}
+
+.missing_review #game_name{
+    font-size: 80px;
+}
+
 /* Left block */
-.cover_border {
-    height: 78%;
-    width: 310px;
-    margin-right: 40px;
-    margin-left: 40px;
+.user_review {
+    display: flex;
 
-    border-radius: 10px;
-
-    position: absolute;
-    top: 120px;
-
+    margin: 24px;
 }
 
-.game_cover {
-    height: 80%;
-    width: auto;
+.game_info {
+    /* border: solid black;
+    border-width: 3px; */
 
-    position: relative;
-    top: 2%;
-    left: 50%;
-    transform: translateX(-50%);
+    text-align: center;
 
-    border: 4px solid black;
-
-    object-fit: cover;
+    margin: 24px;
+    margin-bottom: 0px;
+    margin-top: 36px;
 }
 
-.user_ratings {
+.game_info p {
     color: #4952b3;
     
     font-size: 30px;
-    position: absolute;
-    top: 500px;
-    left: 50%;
-    transform: translate(-50%, -50%);
+    white-space: nowrap;
+    height: max-content;
+}
+
+.game_cover {
+    height: 70%;
+    padding: 20px;
+}
+
+.game_cover img{
+    aspect-ratio: 1080/1920;
+    width:210px;
+
+    object-fit: cover;
+    overflow: hidden;
+}
+
+.user_ratings { 
+    text-align: center;
+}
+
+.user_ratings p{
+    color: #4952b3;
+    
+    font-size: 30px;
     white-space: nowrap;
 }
 
-#game_rating_star {
-    position: absolute;
-    top: 520px;
-    left: 10%;
+.review_info {
+    float: right;
+
+    width: 80%;
+
+    margin: 24px;
 }
 
+.review_info .review_text {
+    height: 70%;
+
+    overflow: auto;
+
+    border: solid black;
+    border-width: 3px;
+
+    border-radius: 10px;
+}
+
+.review_info .review_text p{
+    font-size: 32px;
+}
 
 /* User's review */
-.user_review_div {
-    height: 630px;
-    width: calc(100% - 339px - 40px);
-    margin-left: 40px;
-
-    position:absolute;
-    left: 339px;
-}
-
-.your_review_txt {
-    font-size: 25px;
-
-    position: absolute;
-    top: 40px;
-}
-
-.game_name {
-    font-size: 80px;
-
-    position: relative;
-    top: 60px;
-}
-
 #user_rating_star {
     position: absolute;
     top: 30px;
     right: 3%;
-}
-
-.user_review {
-    height: 345px;
-    width: 95%;
-
-    font-size: 30px;
-    border: 2px solid black;
-    border-radius: 10px;
-    padding: 10px;
-
-    position: absolute;
-    top: 150px; 
-    overflow: auto; 
 }
 
 .user_review span {
@@ -126,12 +128,10 @@ body {
 }
 
 .edit_review_button {
-    position: relative;
-    top: 68%;
-    right: -81.5%;
-
     width: 180px;
     height: 50px;
+
+    margin: 10px;
     
     font-size: 20px;
     font-family: 'Fredoka';
@@ -140,7 +140,7 @@ body {
 
     background-color: white;
     color: #4952b3;
-    cursor: pointer;
+    cursor: pointer;    
 }
 
 .no_review {
@@ -151,12 +151,6 @@ body {
 }
 
 .add_review_button {
-    position: relative;
-    top: 20%;
-    left: 50%;
-    transform: translateX(-50%);
-    
-
     width: 180px;
     height: 50px;
     
