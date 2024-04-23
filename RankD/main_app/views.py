@@ -91,7 +91,6 @@ class HomeView(ListView):
     model = User
     
     def dispatch(self, request, *args, **kwargs):
-        breakpoint()
         user = User.objects.filter(username=self.request.resolver_match.kwargs['username']).last()
         if user.is_authenticated == False:
             return HttpResponseRedirect('/login' + '?error=Faça o login para entrar no app')
@@ -179,7 +178,8 @@ class AddGameReviewView(CreateView):
             game__name=game.name,
             user_id=user.id
         ).last()
-        new_game_rating = request.POST.get('game_rating')
+        
+        new_game_rating = int(request.POST.get('game_rating'))
         
         platform_id = request.POST.get('platform')
         platform_instance = Platform.objects.get(id=platform_id)
@@ -188,10 +188,13 @@ class AddGameReviewView(CreateView):
             old_game_rating = review.rating
             
             number_of_reviews = Review.objects.filter(game__name=game.name).count()
-            new_mean_rating = (((game.mean_review * number_of_reviews) - old_game_rating) + new_game_rating) / number_of_reviews
+            new_mean_rating = (((game.mean_rating * number_of_reviews) - old_game_rating) + new_game_rating) / number_of_reviews
+            
+            game.mean_rating = new_mean_rating
+            game.save()
             
             review.comment = request.POST.get('comment')
-            review.rating = new_mean_rating
+            review.rating = new_game_rating
             review.platform = platform_instance
             
             review.save()
@@ -202,9 +205,10 @@ class AddGameReviewView(CreateView):
         if game.mean_rating:
             new_mean = (game.mean_rating + new_game_rating)/2
             game.mean_rating = new_mean
-            game.save()
         else:
             game.mean_rating = new_game_rating
+            
+        game.save()
             
         review_data = {
             "user": user,
