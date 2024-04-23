@@ -91,6 +91,7 @@ class HomeView(ListView):
     model = User
     
     def dispatch(self, request, *args, **kwargs):
+        breakpoint()
         user = User.objects.filter(username=self.request.resolver_match.kwargs['username']).last()
         if user.is_authenticated == False:
             return HttpResponseRedirect('/login' + '?error=Faça o login para entrar no app')
@@ -170,14 +171,19 @@ class AddGameReviewView(CreateView):
             game__name=game.name,
             user_id=user.id
         ).last()
-        
+        new_game_rating = request.POST.get('game_rating')
         
         platform_id = request.POST.get('platform')
         platform_instance = Platform.objects.get(id=platform_id)
         
         if review:
+            old_game_rating = review.rating
+            
+            number_of_reviews = Review.objects.filter(game__name=game.name).count()
+            new_mean_rating = (((game.mean_review * number_of_reviews) - old_game_rating) + new_game_rating) / number_of_reviews
+            
             review.comment = request.POST.get('comment')
-            review.rating = request.POST.get('game_rating')
+            review.rating = new_mean_rating
             review.platform = platform_instance
             
             review.save()
@@ -185,13 +191,20 @@ class AddGameReviewView(CreateView):
             redirect_url = reverse('review-game', kwargs={'username': user.username, 'gamename': game.name})
             return redirect(redirect_url)
         
+        if game.mean_rating:
+            new_mean = (game.mean_rating + new_game_rating)/2
+            game.mean_rating = new_mean
+            game.save()
+        else:
+            game.mean_rating = new_game_rating
+            
         review_data = {
             "user": user,
             "game": game,
             "platform": platform_instance,
             "comment": request.POST.get('comment'),
             "date": datetime.now(),
-            "rating": request.POST.get('game_rating'),
+            "rating": new_game_rating,
         }
         
         new_review = Review(**review_data)
