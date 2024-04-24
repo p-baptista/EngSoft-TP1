@@ -14,10 +14,10 @@
 
     <style>
         .add_friends_pop_up {
-            display: {% if friend_query %} block {% else %} none {% endif %};
+            display: {% if was_query_sent %} block {% else %} none {% endif %};
         }
         .friends_pop_up {
-            display: {% if friend_query %} block {% else %} none {% endif %};
+            display: {% if was_query_sent %} block {% else %} none {% endif %};
         }
     </style>
 </head>
@@ -56,10 +56,10 @@
                
             <form id="friend_form" method="get" id="add_friend_form">
                 <div class="add_friend">
-                    <button style="float: right; background-color: transparent; border: 0; cursor: pointer;" id="search_friends" >
-                        <i class="material-icons" id="add_icon" >group_add</i>
+                    <button style="float: right; background-color: transparent; border: 0; cursor: pointer; margin-top: 5px;" id="search_friends" >
+                        <i class="material-icons" id="add_icon" style="font-size: 42px;">search</i>
                     </button>
-                    <input class="text" name="searched_friend" placeholder="Add new friends!" style="float: right; font-size: 18px; margin-top: 14px; margin-right: 5px; height: 32px;">
+                    <input class="text" name="searched_friend" placeholder="Search new friends!" style="float: right; font-size: 18px; margin-top: 14px; margin-right: 5px; height: 32px;" required>
                 </div>
             </form>
 
@@ -81,18 +81,24 @@
 
         <div class="add_friends_pop_up" id="add_friends_pop_up">
             <div class="add_friends_list">
-                {% if friend_query %}   
-                    {% for friend in friend_query %}
-                    <a href="/{{user.username}}/profile/{{friend.username}}">
-                        <div class="add_friend_content">
-                            <img src="{% get_media_prefix %}{{friend.icon_path}}" id="user_icon">
-                            <p id="add_friends_name">{{ friend.username }}</p>
-                        </div>
-                    </a>
-                    {% endfor %}
-                {% else %}
-                    <p style="color: white; font-size: 28px; width: auto; text-align: center; margin: 20px;">No Friends Yet!</p>
-                {% endif %}
+                <div style="margin-top: 32px; height: 50px; justify-self: center;">
+                    <h id="search_header">Search Results</h>
+                </div>
+                <div>
+                    {% if friend_query %}   
+                        {% for friend in friend_query %}
+                        <a href="/{{user.username}}/profile/{{friend.username}}" style="text-decoration: none;">
+                            <div class="add_friend_content">
+                                <img src="{% get_media_prefix %}{{friend.icon_path}}" id="user_icon">
+                                <p id="add_friends_name">{{ friend.username }}</p>
+                            </div>
+                        </a>
+                        {% endfor %}
+                    {% else %}
+                        <p style="color: white; font-size: 28px; width: auto; text-align: center; margin: 20px;">No users with that name!</p>
+                    {% endif %}
+                </div>
+                
             </div>
         </div>
         
