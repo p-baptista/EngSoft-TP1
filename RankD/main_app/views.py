@@ -102,6 +102,7 @@ class HeaderView(ListView):
             search_friend_name = self.request.GET.get('searched_friend')     
             if search_friend_name:
                 context['friend_query'] = User.objects.filter(username__contains=self.request.GET.get('searched_friend')).exclude(username=user.username)
+                context['was_query_sent'] = True
             
         return context
 
@@ -139,6 +140,7 @@ class HomeView(ListView):
             search_friend_name = self.request.GET.get('searched_friend')     
             if search_friend_name:
                 context['friend_query'] = User.objects.filter(username__contains=self.request.GET.get('searched_friend')).exclude(username=user.username)
+                context['was_query_sent'] = True
 
         return context
     
@@ -166,6 +168,7 @@ class ProfileView(ListView):
             search_friend_name = self.request.GET.get('searched_friend')     
             if search_friend_name:
                 context['friend_query'] = User.objects.filter(username__contains=self.request.GET.get('searched_friend')).exclude(username=user.username)
+                context['was_query_sent'] = True
             
         return context
     
@@ -207,6 +210,7 @@ class GameReviewView(ListView):
         search_friend_name = self.request.GET.get('searched_friend')     
         if search_friend_name:
             context['friend_query'] = User.objects.filter(username__contains=self.request.GET.get('searched_friend')).exclude(username=user.username)
+            context['was_query_sent'] = True
 
         return context
     
@@ -290,6 +294,7 @@ class AddGameReviewView(CreateView):
         search_friend_name = self.request.GET.get('searched_friend')     
         if search_friend_name:
             context['friend_query'] = User.objects.filter(username__contains=self.request.GET.get('searched_friend')).exclude(username=user.username)
+            context['was_query_sent'] = True
 
         return context    
     
@@ -374,5 +379,6 @@ class GameSearchView(ListView):
             search_friend_name = self.request.GET.get('searched_friend')     
             if search_friend_name:
                 context['friend_query'] = User.objects.filter(username__contains=self.request.GET.get('searched_friend')).exclude(username=user.username)
+                context['was_query_sent'] = True
 
         return context
