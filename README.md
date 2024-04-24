@@ -40,7 +40,7 @@ Também utilizaremos o GitHub, tecnologia obrigatória do trabalho, para reposit
 * [Front]: Página de jogo (com ou sem review) - César
 * [Front]: Conexão do perfil de jogo com o back - Pedro
 
-#### Como usuário, quero visualizar o perfil de outros usuários, adicioná-los à lista de amigos e ver suas bibliotecas/reviews
+#### História #3: Como usuário, quero visualizar o perfil de outros usuários, adicioná-los à lista de amigos e ver suas bibliotecas/reviews
 **Tarefas e Responsáveis:**
 * [Back]: Criar rotas retornando outros usuários - Matheus
 * [Front] Criar botão de procura na Home Page - César
