@@ -77,8 +77,8 @@ h3 {
 }
 
 .profile_info .profile_text p{
-    font-size: 32px;
-    line-height: 64px;
+    font-size: 28px;
+    line-height: 60px;
 }
 
 .profile_info .profile_text b{
@@ -170,7 +170,7 @@ h3 {
 }
 
 #already_friend {
-    width: 35%;
+    width: 60%;
     height: min-content;
     
     font-size: 32px;

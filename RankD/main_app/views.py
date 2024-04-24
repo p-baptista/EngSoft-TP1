@@ -71,13 +71,20 @@ class SignupView(CreateView):
                 for chunk in user_image.chunks():
                     f.write(chunk)
         
-        user_data = {
-            "username":username,
-            "password":password,
-            "email":request.POST['email'],
-            "is_authenticated":False,
-            "icon_path":icon_path[5:]
-        }
+            user_data = {
+                "username":username,
+                "password":password,
+                "email":request.POST['email'],
+                "is_authenticated":False,
+                "icon_path":icon_path[5:]
+            }
+        else:
+            user_data = {
+                "username":username,
+                "password":password,
+                "email":request.POST['email'],
+                "is_authenticated":False,
+            }
         
         new_user = User(**user_data)
         new_user.save()
