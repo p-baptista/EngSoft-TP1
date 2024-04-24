@@ -76,7 +76,7 @@ class SignupView(CreateView):
             "password":password,
             "email":request.POST['email'],
             "is_authenticated":False,
-            "icon_path":icon_path
+            "icon_path":icon_path[5:]
         }
         
         new_user = User(**user_data)
