@@ -27,10 +27,20 @@
                 <p><b>User's name:</b> {{ friend.username }}</p>
                 <p><b>User's email:</b> {{ friend.email }}</p>
                 <p><b>Games reviewed:</b> {{ games_reviewed }}</p>
-                <form id="add-friend-form" method="post">
-                    {% csrf_token %}
-                    <input type="submit" name="add-friend-button" value="Add friend" class="enter_button" style="font-size: 36px;">
-                </form>
+
+                {% if friend in user_friends %}
+                    <div style="text-align: center;">
+                        <p id="already_friend">Already your friend</p>
+                    </div>
+                    
+                {% else %}
+                    <form id="add-friend-form" method="post" name="friend" onsubmit="return validate_form(event)">
+                        {% csrf_token %}
+                        <input type="submit" name="add-friend-button" value="Add friend" class="enter_button" id="friend_confirm">
+                    </form>
+                {% endif %}
+
+                
             </div>
         </div>
 

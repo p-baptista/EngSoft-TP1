@@ -98,6 +98,10 @@ class HeaderView(ListView):
             context['user'] = user
             
             context['user_friends'] = [friendship.user2 for friendship in FriendList.objects.filter(user1__username = user.username)]
+
+            search_friend_name = self.request.GET.get('searched_friend')     
+            if search_friend_name:
+                context['friend_query'] = User.objects.filter(username__contains=self.request.GET.get('searched_friend')).exclude(username=user.username)
             
         return context
 
@@ -134,7 +138,7 @@ class HomeView(ListView):
 
             search_friend_name = self.request.GET.get('searched_friend')     
             if search_friend_name:
-                context['friend_query'] = User.objects.filter(username__contains=self.request.GET.get('searched_friend'))
+                context['friend_query'] = User.objects.filter(username__contains=self.request.GET.get('searched_friend')).exclude(username=user.username)
 
         return context
     
@@ -158,6 +162,10 @@ class ProfileView(ListView):
             context['friend_reviews'] = Review.objects.filter(user_id=friend.id)
 
             context['games_reviewed'] = len(Review.objects.filter(user_id=friend.id))
+
+            search_friend_name = self.request.GET.get('searched_friend')     
+            if search_friend_name:
+                context['friend_query'] = User.objects.filter(username__contains=self.request.GET.get('searched_friend')).exclude(username=user.username)
             
         return context
     
@@ -195,6 +203,10 @@ class GameReviewView(ListView):
         context['user_friends'] = User.objects.filter(id__in=user_friends_id)
         
         context['friends_review'] = Review.objects.filter(game__name=game_name, user_id__in=user_friends_id)
+
+        search_friend_name = self.request.GET.get('searched_friend')     
+        if search_friend_name:
+            context['friend_query'] = User.objects.filter(username__contains=self.request.GET.get('searched_friend')).exclude(username=user.username)
 
         return context
     
@@ -275,6 +287,10 @@ class AddGameReviewView(CreateView):
         
         context['user_friends'] = [friendship.user2 for friendship in FriendList.objects.filter(user1_id=user.id)]
 
+        search_friend_name = self.request.GET.get('searched_friend')     
+        if search_friend_name:
+            context['friend_query'] = User.objects.filter(username__contains=self.request.GET.get('searched_friend')).exclude(username=user.username)
+
         return context    
     
 class ResetPasswordView(ListView):
@@ -354,5 +370,9 @@ class GameSearchView(ListView):
             search_game_name = self.request.GET.get('searched')     
             if search_game_name:
                 context['game_query'] = Game.objects.filter(name__contains=self.request.GET.get('searched'))
+
+            search_friend_name = self.request.GET.get('searched_friend')     
+            if search_friend_name:
+                context['friend_query'] = User.objects.filter(username__contains=self.request.GET.get('searched_friend')).exclude(username=user.username)
 
         return context

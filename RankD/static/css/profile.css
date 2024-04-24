@@ -139,3 +139,45 @@ h3 {
     font-size: 40px;
     text-align: center;
 }
+
+#search_button {
+    width: min-content;
+    height: 8%;
+    
+    font-size: 36px;
+    font-family: 'Fredoka';
+    border-radius: 10px;
+
+    background-color: white;
+    color: #4952b3;
+    cursor: pointer;
+
+    padding: 2px;
+}
+
+#friend_confirm {
+    width: 35%;
+    height: min-content;
+    
+    font-size: 32px;
+    font-family: 'Fredoka';
+    border-radius: 10px;
+    border: 2px solid black;
+    cursor: pointer;
+
+    background-color: white;
+    color: #4952b3;
+}
+
+#already_friend {
+    width: 35%;
+    height: min-content;
+    
+    font-size: 32px;
+    font-family: 'Fredoka';
+    border-radius: 10px;
+    border: 2px solid black;
+
+    background-color: white;
+    color: #4952b3;
+}

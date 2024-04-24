@@ -12,7 +12,7 @@ document.addEventListener("DOMContentLoaded", function() {
         if (profile_pop_up.style.display == 'block') {
             profile_pop_up.style.display = 'none';
         }
-        if (add_friends_pop_up.style.display == 'block') {
+        if (add_friends_pop_up.style.display != 'none') {
             add_friends_pop_up.style.display = 'none';
         }
         if (friends_pop_up.style.display == 'block') {
