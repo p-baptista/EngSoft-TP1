@@ -50,8 +50,8 @@ body {
 }
 
 .game_info {
-    /* border: solid black;
-    border-width: 3px; */
+    border: solid black;
+    border-width: 3px;
 
     text-align: center;
 

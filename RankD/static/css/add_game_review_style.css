@@ -7,7 +7,7 @@ body {
 
 /* For the "select platform */
 select {
-    width: 30%;
+    width: max-content;
     padding: 10px;
 
     font-family: 'Fredoka';
@@ -17,10 +17,6 @@ select {
     background-color: white;
     color: black;
     box-sizing: border-box;
-
-    position: relative;
-    top: 407px;
-    left: 30%;
 }
 
 /* Star logic -> maybe there's a way to separate it? */
@@ -49,21 +45,10 @@ select {
 }
 
 /* Left block */
-.cover_border {
-    height: 78%;
-    width: 310px;
-    margin-right: 40px;
-    margin-left: 40px;
-
-    border-radius: 10px;
-
-    position: absolute;
-    top: 120px;
-}
 
 .game_info {
-    /* border: solid black;
-    border-width: 3px; */
+    border: solid black;
+    border-width: 3px;
 
     text-align: center;
 
@@ -107,43 +92,14 @@ select {
 .user_ratings {
     color: #4952b3;
     
-    font-size: 30px;
-    position: absolute;
-    top: 500px;
-    left: 50%;
-    transform: translate(-50%, -50%);
+    font-size: 30px;    
     white-space: nowrap;
 }
 
-#game_rating_star {
-    position: absolute;
-    top: 520px;
-    left: 10%;
-}
-
-
 /* User's review */
-.user_review_div {
-    height: 628px;
-    width: calc(100% - 339px - 40px);
-    margin-left: 40px;
-
-    position:absolute;
-    left: 339px;
-}
-
 .your_review_txt {
     font-size: 25px;
 
-    position: absolute;
-    top: 40px;
-}
-
-.game_name {
-    font-size: 80px;
-
-    position: relative;
-    top: 60px;
 }
 
 .user_review {
@@ -152,23 +108,7 @@ select {
     margin: 24px;
 }
 
-.user_review span {
-    display: block;
-    overflow-wrap: break-word;
-    word-wrap: break-word;
-}
-
-.your_rating_txt {
-    font-size: 30px;
-
-    position: absolute;
-    top: 81%;
-    right: 11%;
-}
-
 #game_rating {
-    height: 5%;
-    width: 5%;
 
     font-family: 'Fredoka';
     font-size: 30px;
@@ -176,18 +116,10 @@ select {
     border-radius: 10px;
     padding: 10px;
 
-    position: absolute;
-    top: 80%;
-    right: 3%;
-
     overflow: auto; 
 }
 
 .edit_review_button {
-    position: relative;
-    top: -55px;
-    right: -81.5%;
-
     width: 180px;
     height: 50px;
     
@@ -199,4 +131,34 @@ select {
     background-color: white;
     color: #4952b3;
     cursor: pointer;
+}
+
+.edit_review {
+    float: right;
+
+    width: 80%;
+
+    margin: 24px;
+}
+
+.text_div {
+    border: solid black;
+    border-width: 4px;
+    border-radius: 10px;
+
+    width: inherit;
+    height: 60%;
+}
+
+.review_text {
+    height: 95%;
+    width: 99%;
+
+    padding: 5px;
+    border: 0px;
+    resize: none;
+    outline: none;
+
+    font-size: 20px;
+    font-family: 'Fredoka';
 }

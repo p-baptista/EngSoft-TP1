@@ -5,6 +5,7 @@ from django.core.mail import send_mail
 from django.utils.html import format_html
 
 from typing import Any
+from django.db.models.query import QuerySet
 from django.http.response import HttpResponse as HttpResponse
 from datetime import datetime
 from django.shortcuts import render, redirect
@@ -297,4 +298,35 @@ class NewPasswordView(ListView):
         if error:
             context['error'] = error
       
+class GameSearchView(ListView):
+    template_name="games.html"
+    model = User
+    
+    def dispatch(self, request, *args, **kwargs):
+        user = User.objects.filter(username=self.request.resolver_match.kwargs['username']).last()
+        if user.is_authenticated == False:
+            return HttpResponseRedirect('/login' + '?error=Faça o login para entrar no app')
+        
+        return super().dispatch(request, *args, **kwargs)
+    
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        
+        user = User.objects.filter(username=self.request.resolver_match.kwargs['username']).last()
+        if user.is_authenticated == False:
+            return HttpResponseRedirect('/login' + '?error=Faça o login para entrar no app')
+        
+        if user:
+            context['user'] = user
+
+            context['user_games'] = [review.game for review in Review.objects.filter(user__username = user.username)]
+            
+            context['user_friends'] = [friendship.user2 for friendship in FriendList.objects.filter(user1__username = user.username)]
+            
+            context['user_reviews'] = Review.objects.filter(user_id=user.id)
+
+            search_game_name = self.request.GET.get('searched')     
+            if search_game_name:
+                context['game_query'] = Game.objects.filter(name__contains=self.request.GET.get('searched'))
+
         return context
