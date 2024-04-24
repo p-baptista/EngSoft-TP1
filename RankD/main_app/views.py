@@ -55,7 +55,6 @@ class SignupView(CreateView):
         return context
     
     def post(self, request, *args, **kwargs):
-        
         password = request.POST['password']
         if password != request.POST['confirm_password']:
             return HttpResponseRedirect('/signup' + '?error=As senhas informadas não coincidem')
@@ -64,11 +63,20 @@ class SignupView(CreateView):
         if User.objects.filter(username=username):
             return HttpResponseRedirect('/signup' + '?error=O username ja está sendo utilizado')
         
+        user_image = request.FILES.get('user_image', None)
+        icon_path = None
+        if user_image:
+            icon_path = 'media/user_images/' + user_image.name
+            with open(icon_path, 'wb') as f:
+                for chunk in user_image.chunks():
+                    f.write(chunk)
+        
         user_data = {
             "username":username,
             "password":password,
             "email":request.POST['email'],
-            "is_authenticated":False
+            "is_authenticated":False,
+            "icon_path":icon_path
         }
         
         new_user = User(**user_data)
