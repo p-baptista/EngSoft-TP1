@@ -160,6 +160,20 @@ class ProfileView(ListView):
             context['games_reviewed'] = len(Review.objects.filter(user_id=friend.id))
             
         return context
+    
+    def post(self, request, *args, **kwargs):
+        user1 = User.objects.filter(username=request.resolver_match.kwargs['username']).last()
+        user2 = User.objects.filter(username=self.request.resolver_match.kwargs['friend']).last()
+        
+        friendlist_data = {
+            "user1":user1,
+            "user2":user2
+        }
+        
+        new_friendship = FriendList(**friendlist_data)
+        new_friendship.save()
+        
+        return HttpResponseRedirect(f"/{user1.username}")
 
     
 class GameReviewView(ListView):
