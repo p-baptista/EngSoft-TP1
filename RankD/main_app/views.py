@@ -134,7 +134,7 @@ class HomeView(ListView):
 
             search_friend_name = self.request.GET.get('searched_friend')     
             if search_friend_name:
-                context['friend_query'] = User.objects.filter(username__contains=self.request.GET.get('searched_friend'))
+                context['friend_query'] = User.objects.filter(username__contains=self.request.GET.get('searched_friend')).exclude(username=user.username)
 
         return context
     

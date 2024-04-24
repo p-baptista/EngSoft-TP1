@@ -212,6 +212,7 @@
     width: 300px;
     
     background-color: #4952b3;
+    text-align: center;
 }
 
 .add_friends_pop_up .add_friends_list {
@@ -259,4 +260,11 @@
     margin: 10px;
     margin-top: 24px;
     margin-left: 16px;
+}
+
+.add_friends_pop_up #search_header {
+    font-size: 24px;
+    color: white;
+    
+    margin-top: 32px;
 }
