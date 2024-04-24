@@ -28,7 +28,7 @@
             <p style="color:red;">{{error}}</p>
         {% endif %}
 
-        <form id="create_account_form", method="post">
+        <form id="create_account_form", method="post" enctype="multipart/form-data">
             {% csrf_token %}
                 <div>
                     <input type="text" id="username_bar" name="username" 
