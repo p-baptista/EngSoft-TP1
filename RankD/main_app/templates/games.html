@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/games_style.css' %}"/>
+
+    <title>
+        {{ user.username }}'s Home / RankD
+    </title>
+
+    <!-- This corrects a js bug for some reason -->
+    <link rel="shortcut icon" href="#">
+</head>
+
+
+<body>
+    {% include 'header.html' %}
+
+    <!--Adding logic-->
+    <div style="margin-top: 100px;">
+        <h3>Find new games!</h3>
+
+        <form id="search_form" method="get">
+            <div class="search_area">
+                <input type="text" id="search_bar" name="searched">
+                <input type="submit" value="Search" id="search_button">
+            </div>
+        </form>     
+        
+        {% if game_query %}
+            <div class="game_grid">
+                {% for game in game_query %}
+                    <div class="game_item">
+                        <a href="/{{ user.username }}/review-page/{{ game.name }}">
+                            <img src="{% get_media_prefix %}{{game.cover_path}}" class="game_cover">
+                        </a>
+
+                        <div style="align-items: center; text-align: center;">
+                            <p style="text-align: center; font-size: 32px;">
+                                {{ game.name }}
+                            </p>
+
+                            <div>
+                                <div class="star_rating" rating={{ game.mean_rating }} star_size="small" id="game_rating_star" style="margin-top: 2px;"></div>
+                            </div>
+                        
+                            
+                        </div>
+
+                        
+                    </div>
+                {% endfor %}
+            </div>
+        {% else %}
+        {% endif %}
+
+
+        {% load static %}
+        <script src="{% static 'js/stars.js' %}"></script>
+    </div>
+</body>
+
+</html>

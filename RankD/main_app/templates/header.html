@@ -30,6 +30,14 @@
                 <button id="my_friends" style="padding: 20px; margin-right: 25px;"> My Friends </button>
             </div>
 
+            <div class="nav_item" style="padding-top: 28px;">
+                <a id="nav_button" style="padding: 20px; margin-right: 25px; text-decoration: none; color: inherit;" href="/{{ user.username }}"> My Reviews </a>
+            </div>
+
+            <div class="nav_item" style="padding-top: 28px;">
+                <a id="nav_button" style="padding: 20px; margin-right: 25px; text-decoration: none; color: inherit;" href="/{{ user.username }}/games"> Search Games </a>
+            </div>
+
             <div class="nav_item" style="align-self: auto;">
                 <p style="font-size: 25px;margin-top: 20px;"> Welcome, {{ user.username }}! </p>  
             </div>        
@@ -63,9 +71,9 @@
         <div class="profile_pop_up" id="profile_pop_up">
             <button class="log_out" style="float: right; background-color: transparent; border: 0; cursor: pointer;">
                 <i class="material-icons" id="log_out_icon" >exit_to_app</i>
-                <p style="float: right; font-size: 24px; margin: 16px; margin-right: 20px;">
+                <a style="float: right; font-size: 24px; margin: 16px; margin-right: 20px; text-decoration: none; color: white;" href="/login">
                     Log Out
-                </p>    
+                </a>    
             </button>
         </div>
 

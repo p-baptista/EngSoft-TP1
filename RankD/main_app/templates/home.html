@@ -10,6 +10,9 @@
     <title>
         {{ user.username }}'s Home / RankD
     </title>
+
+    <!-- This corrects a js bug for some reason -->
+    <link rel="shortcut icon" href="#">
 </head>
 
 
@@ -17,13 +20,8 @@
     {% include 'header.html' %}
 
     <!--Adding logic-->
-    <div style="margin-top: 100px;">
-        <h3>Find new games!</h3>
-
-        <input type="text" id="search_bar" name="searched">
-        
-        <h3>My games</h3>
-
+    <div style="margin-top: 100px;">        
+        <h3>My Reviews</h3>
         
         {% if user_reviews %}
             <div class="game_grid">
@@ -38,6 +36,7 @@
                             {{ game_review.game.name }}
                         </p>
                         
+                        
                         <h4 class="game_platform"> {{ game_review.platform.slang }} </h4>
 
                         <div class="star_rating" rating={{ game_review.rating }} star_size="small" id="game_rating_star"></div>
@@ -45,12 +44,14 @@
                 {% endfor %}
             </div>
         {% else %}
-            <div class="no_games"> You don't have games in your library yet! </div>
+            <div class="no_games"> You don't have any reviews yet! </div>
         {% endif %}
 
 
         {% load static %}
         <script src="{% static 'js/stars.js' %}"></script>
+        {% load static %}
+        <script src="{% static 'js/home_functions.js' %}"></script>
     </div>
 </body>
 

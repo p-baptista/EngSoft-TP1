@@ -53,3 +53,7 @@ Também utilizaremos o GitHub, tecnologia obrigatória do trabalho, para reposit
 * [Back]: Adicionar review do jogo no banco de dados - Pedro
 * [Front] Criar página para adição de review - César
 * [Front] Criar página para edição de review - César
+
+## Diagramas UML
+![alt text](<readme_images/diagrama_de_classe.png>)
+![alt text](<readme_images/diagrama_de_seq.png>)

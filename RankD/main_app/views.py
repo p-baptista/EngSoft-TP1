@@ -1,4 +1,5 @@
 from typing import Any
+from django.db.models.query import QuerySet
 from django.http.response import HttpResponse as HttpResponse
 from datetime import datetime
 from django.shortcuts import render, redirect
@@ -113,6 +114,10 @@ class HomeView(ListView):
             
             context['user_reviews'] = Review.objects.filter(user_id=user.id)
 
+            search_game_name = self.request.GET.get('searched')     
+            if search_game_name:
+                context['game_query'] = Game.objects.filter(name__contains=self.request.GET.get('searched'))
+
         return context
     
 class ProfileView(ListView):
@@ -176,13 +181,22 @@ class AddGameReviewView(CreateView):
             user_id=user.id
         ).last()
         
+        new_game_rating = int(request.POST.get('game_rating'))
         
         platform_id = request.POST.get('platform')
         platform_instance = Platform.objects.get(id=platform_id)
         
         if review:
+            old_game_rating = review.rating
+            
+            number_of_reviews = Review.objects.filter(game__name=game.name).count()
+            new_mean_rating = (((game.mean_rating * number_of_reviews) - old_game_rating) + new_game_rating) / number_of_reviews
+            
+            game.mean_rating = new_mean_rating
+            game.save()
+            
             review.comment = request.POST.get('comment')
-            review.rating = request.POST.get('game_rating')
+            review.rating = new_game_rating
             review.platform = platform_instance
             
             review.save()
@@ -190,13 +204,21 @@ class AddGameReviewView(CreateView):
             redirect_url = reverse('review-game', kwargs={'username': user.username, 'gamename': game.name})
             return redirect(redirect_url)
         
+        if game.mean_rating:
+            new_mean = (game.mean_rating + new_game_rating)/2
+            game.mean_rating = new_mean
+        else:
+            game.mean_rating = new_game_rating
+            
+        game.save()
+            
         review_data = {
             "user": user,
             "game": game,
             "platform": platform_instance,
             "comment": request.POST.get('comment'),
             "date": datetime.now(),
-            "rating": request.POST.get('game_rating'),
+            "rating": new_game_rating,
         }
         
         new_review = Review(**review_data)
@@ -246,3 +268,36 @@ class ResetPasswordView(ListView):
     #         return HttpResponseRedirect(f'/{user.username}')
     #     else:
     #         return HttpResponseRedirect('/login' + '?error=Usuário e/ou senha não encontrados')
+
+class GameSearchView(ListView):
+    template_name="games.html"
+    model = User
+    
+    def dispatch(self, request, *args, **kwargs):
+        user = User.objects.filter(username=self.request.resolver_match.kwargs['username']).last()
+        if user.is_authenticated == False:
+            return HttpResponseRedirect('/login' + '?error=Faça o login para entrar no app')
+        
+        return super().dispatch(request, *args, **kwargs)
+    
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        
+        user = User.objects.filter(username=self.request.resolver_match.kwargs['username']).last()
+        if user.is_authenticated == False:
+            return HttpResponseRedirect('/login' + '?error=Faça o login para entrar no app')
+        
+        if user:
+            context['user'] = user
+
+            context['user_games'] = [review.game for review in Review.objects.filter(user__username = user.username)]
+            
+            context['user_friends'] = [friendship.user2 for friendship in FriendList.objects.filter(user1__username = user.username)]
+            
+            context['user_reviews'] = Review.objects.filter(user_id=user.id)
+
+            search_game_name = self.request.GET.get('searched')     
+            if search_game_name:
+                context['game_query'] = Game.objects.filter(name__contains=self.request.GET.get('searched'))
+
+        return context
