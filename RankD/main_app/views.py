@@ -1,3 +1,9 @@
+import smtplib
+from email.mime.multipart import MIMEMultipart
+from email.mime.text import MIMEText
+from django.core.mail import send_mail
+from django.utils.html import format_html
+
 from typing import Any
 from django.http.response import HttpResponse as HttpResponse
 from datetime import datetime
@@ -248,22 +254,47 @@ class ResetPasswordView(ListView):
     template_name = "reset_password.html"
     model = User
     
-    # def get_context_data(self, **kwargs):
-    #     context = super().get_context_data(**kwargs)
-        
-    #     error = self.request.GET.get('error')
-    #     if error:
-    #         context['error'] = error
-            
-    #     return context
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+  
+        error = self.request.GET.get('error')
+        if error:
+            context['error'] = error
+      
+        return context
     
-    # def post(self, request, *args, **kwargs):
-    #     user = User.objects.filter(username=request.POST.get('username'), password=request.POST.get('password')).last()
+    def post(self, request, *args, **kwargs):
+        user_email = request.POST.get('username')
+        if user_email:
+            send_mail(
+                subject="Change password request",
+                message=f"To change your current password, go to http://127.0.0.1:8000/new-password/?email={user_email}",
+                from_email="RankD@demomailtrap.com",
+                recipient_list=[user_email]
+            )
         
-    #     if user:
-    #         user.is_authenticated = True
-    #         user.save()
-            
-    #         return HttpResponseRedirect(f'/{user.username}')
-    #     else:
-    #         return HttpResponseRedirect('/login' + '?error=Usuário e/ou senha não encontrados')
+        return HttpResponseRedirect('/login')
+    
+class NewPasswordView(ListView):
+    template_name = "new_password.html"
+    model = User
+    
+    def post(self, request, *args, **kwargs):
+        user = User.objects.filter(email=request.GET.get('email')).last()
+        new_password = request.POST.get('password')
+        
+        if new_password == request.POST.get('password-repeat'):
+            user.password = new_password
+            user.save()
+            return HttpResponseRedirect('/login')
+        
+        return HttpResponseRedirect("."+f"?email={request.GET.get('email')}&error=Passwords do not match")
+    
+    def get_context_data(self, **kwargs: Any):
+        context = super().get_context_data(**kwargs)
+  
+        error = self.request.GET.get('error')
+        if error:
+            context['error'] = error
+      
+        return context
