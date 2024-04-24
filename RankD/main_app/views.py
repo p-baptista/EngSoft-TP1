@@ -124,6 +124,10 @@ class HomeView(ListView):
             if search_game_name:
                 context['game_query'] = Game.objects.filter(name__contains=self.request.GET.get('searched'))
 
+            search_friend_name = self.request.GET.get('searched_friend')     
+            if search_friend_name:
+                context['friend_query'] = User.objects.filter(username__contains=self.request.GET.get('searched_friend'))
+
         return context
     
 class ProfileView(ListView):

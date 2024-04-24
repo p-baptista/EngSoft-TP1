@@ -58,7 +58,6 @@
 }
 
 .friends_pop_up {
-    display: none;
     position: fixed;
     right: 50px;
     z-index: 100;
@@ -201,4 +200,63 @@
     position: relative;
     text-align: right;
     left: 15%;
+}
+
+.add_friends_pop_up {
+    position: fixed;
+    right: 350px;
+    z-index: 100;
+
+    min-height: 80px;
+    max-height: 400px;
+    width: 300px;
+    
+    background-color: #4952b3;
+}
+
+.add_friends_pop_up .add_friends_list {
+    display: block;
+    right: 50px;
+
+    min-height: 240px;
+    max-height: 400px;
+    width: 300px;
+    
+    background-color: #4952b3;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    overflow-y: auto;
+}
+
+.add_friends_pop_up .add_friends_list .add_friend_content {
+    background-color: white;
+    border-color: grey;
+    
+    margin: 5px;
+    height: 72px;
+
+    overflow: hidden;
+
+    cursor: pointer;
+}
+
+.add_friends_pop_up .add_friends_list .add_friend_content img {
+    float: left;
+    background-color: white;
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    cursor: pointer;
+    object-fit: cover;
+    margin-top: 8px;
+
+    box-shadow: black;
+}
+
+.add_friends_pop_up .add_friends_list .add_friend_content #add_friends_name {
+    font-size: 20px;
+    float: left;
+    text-align: center;
+    margin: 10px;
+    margin-top: 24px;
+    margin-left: 16px;
 }
